@@ -52,16 +52,17 @@ df = bl.import_example()
 # Extract election information.
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
-# Fit
+# Print
+print(X)
+# array([ 5387, 23618,  1710, ...,    16,    21,     0], dtype=int64)
+# Make fit
 out = bl.fit(X)
 # Plot
 bl.plot(out, title='Donald Trump')
 ```
 <p align="center">
   <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig1.png" width="600" />
-  
 </p>
-
 
 #### Citation
 Please cite benfordslaw in your publications if this is useful for your research. Here is an example BibTeX entry:
