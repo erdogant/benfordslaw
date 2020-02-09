@@ -75,7 +75,7 @@ Please cite benfordslaw in your publications if this is useful for your research
 ```
 
 #### References
-* 
+* https://en.wikipedia.org/wiki/Benford%27s_law
    
 #### Maintainers
 * Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
