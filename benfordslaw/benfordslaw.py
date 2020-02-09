@@ -4,7 +4,7 @@
 # Name        : benfordslaw.py
 # Author      : E.Taskesen
 # Contact     : erdogant@gmail.com
-# github      : https://github.com/erdogant/benfordslaw.py
+# github      : github.com/erdogant/benfordslaw.py
 # Licence     : MIT
 # --------------------------------------------------
 
@@ -22,7 +22,7 @@ BENFORDLD = [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6]
 
 
 # %% Fit
-def fit(X, alpha=0.05, method=None, verbose=3):
+def fit(X, alpha=0.05, method='chi2', verbose=3):
     """Test if an empirical (observed) distribution significantly differs from a theoretical (expected, Benfords) distribution.
 
     Description
@@ -46,8 +46,8 @@ def fit(X, alpha=0.05, method=None, verbose=3):
     alpha : float [0-1], optional
         Only used to print message about statistical significant. The default is 0.05.
     method : string, optional
-        None (Default: combined pvalues based fishers-method)
-        'chi2'
+        None   (combined pvalues based fishers-method)
+        'chi2' (Default)
         'ks'
     verbose : int, optional
         Print message to screen. The default is 3.
@@ -73,19 +73,21 @@ def fit(X, alpha=0.05, method=None, verbose=3):
         tstats, Praw = combine_pvalues([Praw1, Praw2], method='fisher')
         method='P_ensemble'
 
+    # Show message
     if Praw<=alpha and verbose>=3:
         print("[BL.fit][%s] Anomaly detected! P=%g, Tstat=%g" %(method, Praw, tstats))
     elif verbose>=3:
         print("[BL.fit][%s] No anomaly detected. P=%g, Tstat=%g" %(method, Praw, tstats))
 
+    # Store
     out = {}
     out['P'] = Praw
     out['t'] = tstats
     out['alpha'] = alpha
     out['method'] = method
+    out['percentage_emp'] = percentage_emp
     # out['counts_exp'] = counts_exp
     # out['counts_emp'] = counts_emp
-    out['percentage_emp'] = percentage_emp
 
     # return
     return(out)
@@ -94,9 +96,9 @@ def fit(X, alpha=0.05, method=None, verbose=3):
 # %% Final counts and the frequencies in percentage.
 def _count_first_digit(data):
     # Get only non-zero values
-    data=data[data>1]
+    data = data[data>1]
     # Get the first digits
-    first_digits=list(map(lambda x: int(str(x)[0]), data))
+    first_digits = list(map(lambda x: int(str(x)[0]), data))
 
     # Count occurences. Make sure every position is for [1-9]
     emperical_counts = np.zeros(9)
@@ -143,19 +145,21 @@ def plot(out, title='', figsize=(15,8)):
     x = np.arange(len(data_percentage))
     width = 0.3  # the width of the bars
 
+    # Make figures
     fig, ax = plt.subplots(figsize=figsize)
     # Plot emperical percentages
     rects1 = ax.bar(x, data_percentage, width=width, color='black', alpha=0.8, label='Emperical distribution')
     plt.plot(x, data_percentage, color='black', linewidth=0.8)
-    ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
+    # ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
     # attach a text label above each bar displaying its height
     for rect in rects1:
         height = rect.get_height()
         ax.text(rect.get_x() + rect.get_width() / 2, height, '{:0.1f}'.format(height), ha='center', va='bottom', fontsize=13)
 
     # Plot expected benfords values
-    ax.bar(x + width, BENFORDLD, width=width, color='blue', alpha=0.8, label='Benfords distribution')
-    plt.plot(x + width, BENFORDLD, color='blue', linewidth=0.8)
+    ax.scatter(x, BENFORDLD, s=150, c='red', zorder=2, label='Benfords distribution')
+    # ax.bar(x + width, BENFORDLD, width=width, color='blue', alpha=0.8, label='Benfords distribution')
+    # plt.plot(x + width, BENFORDLD, color='blue', linewidth=0.8)
 
     if out['P']<=out['alpha']:
         title = title + "\nAnomaly detected! P=%g, Tstat=%g" %(out['P'], out['t'])
@@ -187,7 +191,8 @@ def import_example(getfile='USA'):
     Parameters
     ----------
     getfile : String, optional
-        'USA_2016_election_primary_results.zip'
+        'USA': 'USA_2016_election_primary_results.zip'
+        'RUS' : 'RUS_2018_voting_data_eng.zip'
 
     Returns
     -------
@@ -196,7 +201,7 @@ def import_example(getfile='USA'):
     """
     if getfile=='USA':
         getfile='USA_2016_election_primary_results.zip'
-    else:
+    elif getfile=='RUS':
         getfile='RUS_2018_voting_data_eng.zip'
 
     print('[BL.import_example] Loading %s..' %getfile)

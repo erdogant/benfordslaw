@@ -2,7 +2,7 @@ import numpy as np
 import benfordslaw as bl
 
 def test_benfordslaw():
-    df = bl.import_example('USA')
+    df = bl.import_example()
     Iloc = df['candidate']=='Donald Trump'
     X = df['votes'].loc[Iloc].values
 
