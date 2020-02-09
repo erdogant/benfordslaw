@@ -13,13 +13,13 @@ else:
 with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
-     install_requires=['matplotlib','numpy','pandas','tqdm'],
+     install_requires=['matplotlib','numpy','scipy','pandas'],
      python_requires='>=3',
      name='benfordslaw',
      version=new_version,
      author="Erdogan Taskesen",
      author_email="erdogant@gmail.com",
-     description="Python package benfordslaw",
+     description="benfordslaw is to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution.",
      long_description=long_description,
      long_description_content_type="text/markdown",
      url="https://github.com/erdogant/benfordslaw",

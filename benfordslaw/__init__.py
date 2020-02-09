@@ -10,7 +10,7 @@ __version__ = '0.1.0'
 
 # module level doc-string
 __doc__ = """
-benfordslaw - benfordslaw is an Python package ...
+benfordslaw - benfordslaw is an Python package to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution.
 =====================================================================
 
 Description
