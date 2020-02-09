@@ -27,10 +27,7 @@
 * It is distributed under the MIT license.
 
 ### Requirements
-* It is advisable to create a new environment. 
 ```python
-conda create -n env_benfordslaw python=3.6
-conda activate env_benfordslaw
 pip install -r requirements
 ```
 
@@ -48,14 +45,17 @@ python setup.py install
 
 #### Import benfordslaw package
 ```python
-import benfordslaw as benfordslaw
-```
+import benfordslaw as bl
 
-#### Example:
-```python
-df = pd.read_csv('https://github.com/erdogant/hnet/blob/master/benfordslaw/data/example_data.csv')
-model = benfordslaw.fit(df)
-G = benfordslaw.plot(model)
+# Load elections example
+df = bl.import_example()
+# Extract election information.
+Iloc = df['candidate']=='Donald Trump'
+X = df['votes'].loc[Iloc].values
+# Fit
+out = bl.fit(X)
+# Plot
+bl.plot(out, title='Donald Trump')
 ```
 <p align="center">
   <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig1.png" width="600" />
