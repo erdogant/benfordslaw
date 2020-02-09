@@ -6,7 +6,12 @@
 [![Downloads](https://pepy.tech/badge/benfordslaw/week)](https://pepy.tech/project/benfordslaw/week)
 [![Donate Bitcoin](https://img.shields.io/badge/donate-grey.svg)](https://erdogant.github.io/donate/?currency=USD&amount=5)
 
-* benfordslaw is Python package
+* benfordslaw is Python package to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution. The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small. This method can be used if you want to test whether your set of numbers may be artificial (or manupilated). If a certain set of values follows Benford's Law then model's for the corresponding predicted values should also follow Benford's Law. Normal data (Unmanipulated) does trend with Benford's Law, whereas Manipulated or fraudulent data does not.
+
+* Assumptions of the data:
+  1. The numbers need to be random and not assigned, with no imposed minimums or maximums.
+  2. The numbers should cover several orders of magnitude
+  3. Dataset should preferably cover at least 1000 samples. Though Benford’s law has been shown to hold true for datasets containing as few as 50 numbers.
 
 ### Contents
 - [Installation](#-installation)
