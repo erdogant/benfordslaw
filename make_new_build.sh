@@ -14,7 +14,7 @@ python setup.py sdist
 echo ""
 
 read -p "Press [Enter] to install the pip package..."
-pip install -U dist/benfordslaw-0.1.0-py3-none-any.whl
+pip install -U dist/benfordslaw-0.1.2-py3-none-any.whl
 echo ""
 
 read -p ">twine upload dist/* TO UPLOAD TO PYPI..."

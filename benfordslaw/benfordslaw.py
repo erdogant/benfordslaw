@@ -58,7 +58,7 @@ def fit(X, alpha=0.05, method='chi2', verbose=3):
 
     """
     # Make distribution first digits
-    [counts_emp, percentage_emp, total_count] = _count_first_digit(X)
+    [counts_emp, percentage_emp, total_count, digit] = _count_first_digit(X)
     # Expected counts
     counts_exp = _get_expected_counts(total_count)
 
@@ -85,7 +85,7 @@ def fit(X, alpha=0.05, method='chi2', verbose=3):
     out['t'] = tstats
     out['alpha'] = alpha
     out['method'] = method
-    out['percentage_emp'] = percentage_emp
+    out['percentage_emp'] = np.c_[digit, percentage_emp]
     # out['counts_exp'] = counts_exp
     # out['counts_emp'] = counts_emp
 
@@ -102,15 +102,17 @@ def _count_first_digit(data):
 
     # Count occurences. Make sure every position is for [1-9]
     emperical_counts = np.zeros(9)
+    digit = []
     for i in range(1,10):
         emperical_counts[i - 1] = first_digits.count(i)
+        digit.append(i)
 
     # Total amount
     total_count=sum(emperical_counts)
     # Make percentage
     emperical_percentage=[(i / total_count) * 100 for i in emperical_counts]
     # Return
-    return(emperical_counts, emperical_percentage, total_count)
+    return(emperical_counts, emperical_percentage, total_count, digit)
 
 
 # %% Compute expected counts
@@ -142,14 +144,14 @@ def plot(out, title='', figsize=(15,8)):
     fontsize=16
 
     data_percentage = out['percentage_emp']
-    x = np.arange(len(data_percentage))
+    x = data_percentage[:,0]
     width = 0.3  # the width of the bars
 
     # Make figures
     fig, ax = plt.subplots(figsize=figsize)
     # Plot emperical percentages
-    rects1 = ax.bar(x, data_percentage, width=width, color='black', alpha=0.8, label='Emperical distribution')
-    plt.plot(x, data_percentage, color='black', linewidth=0.8)
+    rects1 = ax.bar(x, data_percentage[:,1], width=width, color='black', alpha=0.8, label='Emperical distribution')
+    plt.plot(x, data_percentage[:,1], color='black', linewidth=0.8)
     # ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
     # attach a text label above each bar displaying its height
     for rect in rects1:
