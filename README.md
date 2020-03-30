@@ -92,5 +92,5 @@ Please cite benfordslaw in your publications if this is useful for your research
 See [LICENSE](LICENSE) for details.
 
 #### Donation
-* This work is created and maintained in my free time. Contributions of any kind are very appreciated. <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Sponsering</a> is also possible.
+* This work is created and maintained in my free time. If you wish to buy me a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a> for this work, it is very appreciated.
 
