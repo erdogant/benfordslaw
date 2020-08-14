@@ -17,6 +17,8 @@ from scipy.stats import chisquare
 from scipy.stats import ks_2samp
 from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
+import wget
+
 # Benford's Law percentage-distribution for leading digits 1-9
 BENFORDLD = [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6]
 
@@ -75,9 +77,9 @@ def fit(X, alpha=0.05, method='chi2', verbose=3):
 
     # Show message
     if Praw<=alpha and verbose>=3:
-        print("[BL.fit][%s] Anomaly detected! P=%g, Tstat=%g" %(method, Praw, tstats))
+        print("[benfordslaw] >[%s] Anomaly detected! P=%g, Tstat=%g" %(method, Praw, tstats))
     elif verbose>=3:
-        print("[BL.fit][%s] No anomaly detected. P=%g, Tstat=%g" %(method, Praw, tstats))
+        print("[benfordslaw] >[%s] No anomaly detected. P=%g, Tstat=%g" %(method, Praw, tstats))
 
     # Store
     out = {}
@@ -186,32 +188,47 @@ def plot(out, title='', figsize=(15,8)):
     return fig,ax
 
 
-# %% Example data
-def import_example(getfile='USA'):
-    """Import example.
+# %% Import example dataset from github.
+def import_example(data='USA', verbose=3):
+    """Import example dataset from github source.
+    
+    Description
+    -----------
+    Import one of the few datasets from github source.
 
     Parameters
     ----------
-    getfile : String, optional
-        'USA': 'USA_2016_election_primary_results.zip'
-        'RUS' : 'RUS_2018_voting_data_eng.zip'
+    data : str
+        * 'USA'
+        * 'RUS'
+    verbose : int, (default: 3)
+        Print message to screen.
 
     Returns
     -------
-    df : DataFrame
+    pd.DataFrame()
+        Dataset containing mixed features.
 
     """
-    if getfile=='USA':
-        getfile='USA_2016_election_primary_results.zip'
-    elif getfile=='RUS':
-        getfile='RUS_2018_voting_data_eng.zip'
-
-    print('[BL.import_example] Loading %s..' %getfile)
-    curpath = os.path.dirname(os.path.abspath(__file__))
-    PATH_TO_DATA=os.path.join(curpath, 'data', getfile)
-    if os.path.isfile(PATH_TO_DATA):
-        df=pd.read_csv(PATH_TO_DATA, sep=',')
-        return df
+    if data=='USA':
+        url='https://erdogant.github.io/datasets/USA_2016_elections.zip'
+    elif data=='RUS':
+        url='https://erdogant.github.io/datasets/RUS_2018_elections.zip'
     else:
-        print('[BL.import_example] Oops! Example data not found!')
-        return None
+        if verbose>=3: print('[benfordslaw] >[%s] does not exists. Try "USA" or "RUS" <return>' %(data))
+
+    curpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
+    PATH_TO_DATA = os.path.join(curpath, wget.filename_from_url(url))
+    if not os.path.isdir(curpath):
+        os.makedirs(curpath, exist_ok=True)
+
+    # Check file exists.
+    if not os.path.isfile(PATH_TO_DATA):
+        if verbose>=3: print('[benfordslaw] >Downloading [%s] dataset from github source..' %(data))
+        wget.download(url, curpath)
+
+    # Import local dataset
+    if verbose>=3: print('[benfordslaw] >Import dataset [%s]' %(data))
+    df = pd.read_csv(PATH_TO_DATA, sep=',')
+    # Return
+    return df

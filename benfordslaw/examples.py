@@ -4,7 +4,7 @@ import benfordslaw as bl
 
 # %%
 # Load example
-df = bl.import_example()
+df = bl.import_example(data='USA')
 
 # %% Donald Trump
 Iloc = df['candidate']=='Donald Trump'
