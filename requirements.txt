@@ -6,3 +6,4 @@ matplotlib
 numpy 
 scipy
 pandas
+wget
