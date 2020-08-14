@@ -3,8 +3,8 @@
 [![Python](https://img.shields.io/pypi/pyversions/benfordslaw)](https://img.shields.io/pypi/pyversions/benfordslaw)
 [![PyPI Version](https://img.shields.io/pypi/v/benfordslaw)](https://pypi.org/project/benfordslaw/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/erdogant/benfordslaw/blob/master/LICENSE)
-[![Downloads](https://pepy.tech/badge/benfordslaw/week)](https://pepy.tech/project/benfordslaw/week)
-[![Donate Bitcoin](https://img.shields.io/badge/donate-grey.svg)](https://erdogant.github.io/donate/?currency=USD&amount=5)
+[![Downloads](https://pepy.tech/badge/benfordslaw)](https://pepy.tech/project/benfordslaw)
+[![Downloads](https://pepy.tech/badge/benfordslaw/month)](https://pepy.tech/project/benfordslaw/month)
 
 * benfordslaw is Python package to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution. The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small. This method can be used if you want to test whether your set of numbers may be artificial (or manupilated). If a certain set of values follows Benford's Law then model's for the corresponding predicted values should also follow Benford's Law. Normal data (Unmanipulated) does trend with Benford's Law, whereas Manipulated or fraudulent data does not.
 
@@ -48,7 +48,7 @@ python setup.py install
 import benfordslaw as bl
 
 # Load elections example
-df = bl.import_example()
+df = bl.import_example(data='USA')
 
 # Extract election information.
 X = df['votes'].loc[df['candidate']=='Donald Trump'].values
