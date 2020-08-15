@@ -3,10 +3,11 @@
 import benfordslaw as bl
 
 # %%
+
+# %% USA
 # Load example
 df = bl.import_example(data='USA')
 
-# %% Donald Trump
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 out = bl.fit(X)
