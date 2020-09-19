@@ -11,7 +11,7 @@
 * Assumptions of the data:
   1. The numbers need to be random and not assigned, with no imposed minimums or maximums.
   2. The numbers should cover several orders of magnitude
-  3. Dataset should preferably cover at least 1000 samples. Though Benford’s law has been shown to hold true for datasets containing as few as 50 numbers.
+  3. Dataset should preferably cover at least 1000 samples. Though Benford's law has been shown to hold true for datasets containing as few as 50 numbers.
 
 ### Contents
 - [Installation](#-installation)
