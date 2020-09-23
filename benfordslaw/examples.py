@@ -1,30 +1,38 @@
 """Examples for benfords law."""
 
-import benfordslaw as bl
+import benfordslaw
+print(benfordslaw.__version__)
 
-# %%
+# %% USA example
+from benfordslaw import benfordslaw
 
-# %% USA
-# Load example
+bl = benfordslaw()
+
+# USA example
 df = bl.import_example(data='USA')
 
+# Get data for candidate
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
-out = bl.fit(X)
-bl.plot(out, title='Donald Trump')
+
+# Fit
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
 
 # %% RUS
 df = bl.import_example('RUS')
 candidates=['Putin Vladimir Vladimirovich', 'Baburin Sergei Nikolaevich', 'Titov Boris Yurievich', 'Yavlinskiy Gregory Alekseivich']
 
 for candidate in candidates:
-    out = bl.fit(df[candidate].values, method='ks')
-    bl.plot(out, title=candidate)
+    bl = benfordslaw(method='ks')
+    bl.fit(df[candidate].values)
+    bl.plot(title=candidate)
 
 # %% USA
 df = bl.import_example('USA')
 for candidate in df['candidate'].unique():
     Iloc = df['candidate']==candidate
     X = df['votes'].loc[Iloc].values
-    out = bl.fit(X)
-    bl.plot(out, title=candidate)
+    bl.fit(X)
+    bl.plot(title=candidate)

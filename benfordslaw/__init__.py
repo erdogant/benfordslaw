@@ -1,12 +1,8 @@
-from benfordslaw.benfordslaw import (
-    fit,
-    plot,
-    import_example,
-)
+from benfordslaw.benfordslaw import benfordslaw
 
 __author__ = 'Erdogan Tasksen'
 __email__ = 'erdogant@gmail.com'
-__version__ = '0.1.3'
+__version__ = '1.0.0'
 
 # module level doc-string
 __doc__ = """
@@ -21,12 +17,16 @@ This method can be used if you want to test whether your set of numbers may be a
 
 Example
 -------
-import benfordslaw as bl
-
-df = bl.import_example()
-X = df['votes'].loc[df['candidate']=='Donald Trump'].values
-out = bl.fit(X)
-fig,ax = bl.plot(out)
+>>> from benfordslaw import benfordslaw
+>>> # Initialize
+>>> bl = benfordslaw()
+>>> df = bl.import_example()
+>>> # Get data for one candidate
+>>> X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+>>> # Fit
+>>> results = bl.fit(X)
+>>> # Figure
+>>> fig, ax = bl.plot()
 
 References
 ----------

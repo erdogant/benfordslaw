@@ -18,25 +18,12 @@
   2. The numbers should cover several orders of magnitude
   3. Dataset should preferably cover at least 1000 samples. Though Benford's law has been shown to hold true for datasets containing as few as 50 numbers.
 
-### Contents
-- [Installation](#-installation)
-- [Requirements](#-Requirements)
-- [Quick Start](#-quick-start)
-- [Contribute](#-contribute)
-- [Citation](#-citation)
-- [Maintainers](#-maintainers)
-- [License](#-copyright)
 
 ### Installation
 * Install ``benfordslaw`` from PyPI (recommended). benfordslaw is compatible with Python 3.6+ and runs on Linux, MacOS X and Windows. 
 * It is distributed under the MIT license.
 
-### Requirements
-```python
-pip install -r requirements
-```
-
-#### Quick Start
+#### Installation
 ```
 pip install benfordslaw
 ```
@@ -45,12 +32,15 @@ pip install benfordslaw
 ```bash
 git clone https://github.com/erdogant/benfordslaw.git
 cd benfordslaw
-python setup.py install
+pip install -U .
 ```  
 
 #### Import benfordslaw package
 ```python
-import benfordslaw as bl
+from benfordslaw import benfordslaw
+
+# Initialize
+bl = benfordslaw()
 
 # Load elections example
 df = bl.import_example(data='USA')
@@ -63,10 +53,10 @@ print(X)
 # array([ 5387, 23618,  1710, ...,    16,    21,     0], dtype=int64)
 
 # Make fit
-out = bl.fit(X)
+results = bl.fit(X)
 
 # Plot
-bl.plot(out, title='Donald Trump')
+bl.plot(title='Donald Trump')
 ```
 <p align="center">
   <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig1.png" width="600" />
@@ -87,11 +77,11 @@ Please cite benfordslaw in your publications if this is useful for your research
 * https://en.wikipedia.org/wiki/Benford%27s_law
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
    
-#### Maintainers
-* Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
+### Maintainer
+	Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
+	Contributions are welcome.
 
-#### Contribute
-* Contributions are welcome.
+	Star it if you like it!
 
 #### Licence
 See [LICENSE](LICENSE) for details.
