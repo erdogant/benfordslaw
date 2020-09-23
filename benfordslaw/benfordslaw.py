@@ -253,3 +253,8 @@ def _count_first_digit(data):
     emperical_percentage=[(i / total_count) * 100 for i in emperical_counts]
     # Return
     return(emperical_counts, emperical_percentage, total_count, digit)
+
+
+# %% Main
+if __name__ == "__main__":
+    print('[benfordslaw] >Please bootup python and run benfordslaw as described in the readme file: https://github.com/erdogant/benfordslaw')
