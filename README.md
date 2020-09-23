@@ -42,6 +42,9 @@ from benfordslaw import benfordslaw
 # Initialize
 bl = benfordslaw()
 
+# Initialize
+bl = benfordslaw()
+
 # Load elections example
 df = bl.import_example(data='USA')
 
