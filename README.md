@@ -78,14 +78,7 @@ Please cite benfordslaw in your publications if this is useful for your research
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
    
 ### Maintainer
-	Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
-	Contributions are welcome.
-
-	Star it if you like it!
-
-#### Licence
-See [LICENSE](LICENSE) for details.
-
-#### Donation
-* This work is created and maintained in my free time. If you wish to buy me a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a> for this work, it is very appreciated.
-
+	* Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
+	* This work is created and maintained in my free time. If you wish to buy me a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a> for this work, it is very appreciated.
+	* Contributions are welcome.
+	* Star it if you like it!
