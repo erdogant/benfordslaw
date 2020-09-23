@@ -52,6 +52,9 @@ python setup.py install
 ```python
 import benfordslaw as bl
 
+# Initialize
+bl = benfordslaw()
+
 # Load elections example
 df = bl.import_example(data='USA')
 
