@@ -118,7 +118,7 @@ class benfordslaw:
         return self.results
 
     # Plot
-    def plot(self, title='', fontsize=16, barcolor='black', barwidth=0.3, label='Emperical distribution', figsize=(15, 8)):
+    def plot(self, title='', fontsize=16, barcolor='black', barwidth=0.3, label='Empirical distribution', figsize=(15, 8)):
         """Make bar chart of observed vs expected 1st digit frequency in percent.
 
         Parameters
@@ -129,7 +129,7 @@ class benfordslaw:
             Width of the bars.
         barcolor : tuple or string, (default : 'black')
             Color of the bars. Can be of type String such as "red" or "black" but also RGB list such as: [0.5, 0.5, 0.5]
-        label : String, (default : 'Emperical distribution')
+        label : String, (default : 'Empirical distribution')
             Label of the figure.
         figsize : tuple, optional
             Figure size. The default is (15,8).
@@ -144,7 +144,7 @@ class benfordslaw:
 
         # Make figures
         fig, ax = plt.subplots(figsize=figsize)
-        # Plot emperical percentages
+        # Plot Empirical percentages
         rects1 = ax.bar(x, data_percentage[:, 1], width=barwidth, color=barcolor, alpha=0.8, label=label)
         plt.plot(x, data_percentage[:, 1], color='black', linewidth=0.8)
         # ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
@@ -241,18 +241,18 @@ def _count_first_digit(data):
     first_digits = list(map(lambda x: int(str(x)[0]), data))
 
     # Count occurences. Make sure every position is for [1-9]
-    emperical_counts = np.zeros(9)
+    empirical_counts = np.zeros(9)
     digit = []
     for i in range(1, 10):
-        emperical_counts[i - 1] = first_digits.count(i)
+        empirical_counts[i - 1] = first_digits.count(i)
         digit.append(i)
 
     # Total amount
-    total_count=sum(emperical_counts)
+    total_count=sum(empirical_counts)
     # Make percentage
-    emperical_percentage=[(i / total_count) * 100 for i in emperical_counts]
+    empirical_percentage=[(i / total_count) * 100 for i in empirical_counts]
     # Return
-    return(emperical_counts, emperical_percentage, total_count, digit)
+    return(empirical_counts, empirical_percentage, total_count, digit)
 
 
 # %% Main
