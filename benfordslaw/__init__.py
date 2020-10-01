@@ -13,7 +13,7 @@ Description
 -----------
 Test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution.
 The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small.
-This method can be used if you want to test whether your set of numbers may be artificial (or manupilated).
+This method can be used if you want to test whether your set of numbers may be artificial (or manipulated).
 
 Example
 -------

@@ -53,7 +53,7 @@ class benfordslaw:
         Description
         -----------
         The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small.
-        This method can be used if you want to test whether your set of numbers may be artificial (or manupilated).
+        This method can be used if you want to test whether your set of numbers may be artificial (or manipulated).
         Let us assume the null Hypothesis: H0: observed and theoretical distributions are the same.
         If a certain set of values follows Benford's Law then model's for the corresponding predicted values should also follow Benford's Law.
         Normal data (Unmanipulated) does trend with Benford's Law, whereas Manipulated or fraudulent data does not.
