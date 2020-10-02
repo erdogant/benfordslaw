@@ -40,7 +40,7 @@ pip install -U .
 from benfordslaw import benfordslaw
 
 # Initialize
-bl = benfordslaw()
+bl = benfordslaw(alpha=0.05)
 
 # Load elections example
 df = bl.import_example(data='USA')
