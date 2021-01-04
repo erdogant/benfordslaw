@@ -62,6 +62,54 @@ bl.plot(title='Donald Trump')
   <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig1.png" width="600" />
 </p>
 
+
+#### Analyze second digit-distribution
+
+```python
+from benfordslaw import benfordslaw
+
+# Initialize and set to analyze the second digit postion
+bl = benfordslaw(pos=2)
+# USA example
+df = bl.import_example(data='USA')
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
+```
+
+
+#### Analyze last digit-distribution
+
+```python
+from benfordslaw import benfordslaw
+
+# Initialize and set to analyze the last postion
+bl = benfordslaw(pos=-1)
+# USA example
+df = bl.import_example(data='USA')
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
+```
+
+#### Analyze second last digit-distribution
+
+```python
+from benfordslaw import benfordslaw
+
+# Initialize and set to analyze the last postion
+bl = benfordslaw(pos=-2)
+# USA example
+df = bl.import_example(data='USA')
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
+```
+
+
 #### Citation
 Please cite benfordslaw in your publications if this is useful for your research. Here is an example BibTeX entry:
 ```BibTeX
