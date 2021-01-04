@@ -17,6 +17,7 @@ from scipy.stats import chisquare
 from scipy.stats import ks_2samp
 from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
+import math
 import wget
 
 
@@ -24,7 +25,7 @@ import wget
 class benfordslaw:
     """Class benfordslaw."""
 
-    def __init__(self, alpha=0.05, method='chi2', verbose=3):
+    def __init__(self, alpha=0.05, method='chi2', pos=1, verbose=3):
         """Initialize benfordslaw with user-defined parameters.
 
         Parameters
@@ -37,15 +38,25 @@ class benfordslaw:
             * 'chi2'
             * 'ks'
             * None (combined pvalues based fishers-method)
+        pos : int [-9,..,9], (default: 1).
+            Digit position the be analyzed. 1: first digit, 2: second digit etc. -1: the last position, -2: second last digit etc
         verbose : int, optional
             Print message to screen. The default is 3.
         """
         if (alpha is None): alpha=1
         self.alpha = alpha
         self.method = method
+        self.pos = pos
         self.verbose = verbose
         # Benford's Law percentage-distribution for leading digits 1-9
-        self.leading_digits = [30.1, 17.6, 12.5, 9.7, 7.9, 6.7, 5.8, 5.1, 4.6]
+        if np.abs(pos)==1:
+            self.leading_digits = np.array(list(map(lambda x: math.log(1 + (1 / x), 10), np.arange(1, 10)))) * 100
+            self.digit_range = range(1, 10)
+        elif np.abs(pos)==2:
+            self.leading_digits = [12, 11.4, 10.9, 10.4, 10, 9.7, 9.3, 9, 8.8, 8.5]
+            self.digit_range = range(0, 10)
+        elif np.abs(pos)>2:
+            raise Exception('[benfordslaw] >There is no leading digit distribution specified for this digit!')
 
     def fit(self, X):
         """Test if an empirical (observed) distribution significantly differs from a theoretical (expected, Benfords) distribution.
@@ -87,7 +98,9 @@ class benfordslaw:
 
         """
         # Make distribution first digits
-        counts_emp, percentage_emp, total_count, digit = _count_first_digit(X)
+        if self.verbose>=3:
+            print("[benfordslaw] >Analyzing digit position: [%s]" %(self.pos))
+        counts_emp, percentage_emp, total_count, digit = _count_digit(X, self.pos, self.digit_range)
         # Expected counts
         counts_exp = self._get_expected_counts(total_count)
 
@@ -233,10 +246,11 @@ class benfordslaw:
         return(out)
 
 
-# %% Final counts and the frequencies in percentage.
+# %% Counts and the frequencies in percentage for the first digit
 def _count_first_digit(data):
     # Get only non-zero values
-    data = data[data>1]
+    data = data[data>=1]
+
     # Get the first digits
     first_digits = list(map(lambda x: int(str(x)[0]), data))
 
@@ -248,11 +262,45 @@ def _count_first_digit(data):
         digit.append(i)
 
     # Total amount
-    total_count=sum(empirical_counts)
+    total_count = sum(empirical_counts)
     # Make percentage
-    empirical_percentage=[(i / total_count) * 100 for i in empirical_counts]
+    empirical_percentage = [(i / total_count) * 100 for i in empirical_counts]
     # Return
     return(empirical_counts, empirical_percentage, total_count, digit)
+
+
+# %% Counts and the frequencies in percentage for the second digit
+def _count_digit(data, d, digit_range):
+    # Get only non-zero values
+    data = data[data>=1]
+
+    # Reverse numbers if last digits is required
+    if d < 0:
+        data = list(map(lambda x: x[::-1], data.astype(str)))
+        data = np.array(data).astype(int)
+        d = d * -1
+
+    # Remove one because pythons starts counting from 0
+    d = d - 1
+
+    # Get the ith digit
+    digits = np.zeros_like(data)
+    Iloc = data>=np.power(10, d)
+    digits[Iloc] = list(map(lambda x: int(str(x)[d]), data[Iloc]))
+
+    # Count occurences. Make sure every position is for [1-9]
+    empirical_counts = np.zeros(len(digit_range))
+    digitnr = []
+    for i in digit_range:
+        empirical_counts[i - 1] = list(digits).count(i)
+        digitnr.append(i)
+
+    # Total amount
+    total_count = sum(empirical_counts)
+    # Make percentage
+    empirical_percentage = [(i / total_count) * 100 for i in empirical_counts]
+    # Return
+    return(empirical_counts, empirical_percentage, total_count, digitnr)
 
 
 # %% Main

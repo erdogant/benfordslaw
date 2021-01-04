@@ -1,12 +1,12 @@
 """Examples for benfords law."""
 
-import benfordslaw
-print(benfordslaw.__version__)
+# import benfordslaw
+# print(benfordslaw.__version__)
 
 # %% USA example
 from benfordslaw import benfordslaw
 
-bl = benfordslaw()
+bl = benfordslaw(pos=1)
 
 # USA example
 df = bl.import_example(data='USA')
@@ -16,6 +16,33 @@ Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 
 # Fit
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+
+# %% Analyze Second digit
+
+bl = benfordslaw(pos=2)
+# USA example
+df = bl.import_example(data='USA')
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+
+# %% Analyze last digit
+
+bl = benfordslaw(pos=-1)
+# USA example
+df = bl.import_example(data='USA')
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+
+# %% second last digit
+
+bl = benfordslaw(pos=-2)
+# USA example
+df = bl.import_example(data='USA')
 results = bl.fit(X)
 # Plot
 bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
