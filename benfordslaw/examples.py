@@ -18,7 +18,7 @@ X = df['votes'].loc[Iloc].values
 # Fit
 results = bl.fit(X)
 # Plot
-bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 # %% Analyze Second digit
 
@@ -27,7 +27,7 @@ bl = benfordslaw(pos=2)
 df = bl.import_example(data='USA')
 results = bl.fit(X)
 # Plot
-bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 # %% Analyze last digit
 
@@ -36,7 +36,7 @@ bl = benfordslaw(pos=-1)
 df = bl.import_example(data='USA')
 results = bl.fit(X)
 # Plot
-bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 # %% second last digit
 
@@ -45,7 +45,7 @@ bl = benfordslaw(pos=-2)
 df = bl.import_example(data='USA')
 results = bl.fit(X)
 # Plot
-bl.plot(title='Donald Trump', barcolor=[0.5,0.5,0.5], fontsize=12, barwidth=0.4)
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 # %% RUS
 df = bl.import_example('RUS')

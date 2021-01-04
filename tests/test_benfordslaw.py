@@ -1,3 +1,6 @@
+# pip install pytest
+# pytest test/test_benfordslaw.py
+
 import numpy as np
 from benfordslaw import benfordslaw
 
@@ -17,8 +20,8 @@ def test_benfordslaw():
     # TEST 2: check chi2
     bl = benfordslaw(method='chi2')
     out = bl.fit(X)
-    assert out['P']==0.44441032315455364
-    assert out['t']==7.888769391226363
+    assert out['P']==0.42298423856214706
+    assert out['t']==8.10808210809422
     # TEST 3: check ks
     bl = benfordslaw(method='ks')
     out = bl.fit(X)
