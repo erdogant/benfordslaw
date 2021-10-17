@@ -12,6 +12,8 @@ x = np.append(x,[1,1,1,1,1,1,])
 isben2 = bl.fit(x)
 print(f"isben2 {isben2}")
 print(f"P_significant: {isben2['P_significant']}")
+if not isben2['P_significant']:
+    print("sorry, nope.")
 
 # %% USA example
 from benfordslaw import benfordslaw
