@@ -18,6 +18,6 @@ keywords:
 license: "MIT"
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://github.com/erdogant/benfordslaw"
-title: "benfordslaw is to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution."
+title: "benfordslaw is to test the frequency distribution of leading digits."
 version: "1.0.2"
 ...
