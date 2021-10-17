@@ -6,10 +6,11 @@ print(benfordslaw.__version__)
 # %%
 import numpy as np
 from benfordslaw import benfordslaw
-bl = benfordslaw(alpha=0.05)
+bl = benfordslaw(alpha=0.05, method='chi2')
 x = np.linspace(0,1000,1001)
-x = np.append(x,[1,1,1,1,1,1,])
+x = np.append(x,[1,1,1,1,1,1])
 isben2 = bl.fit(x)
+
 print(f"isben2 {isben2}")
 print(f"P_significant: {isben2['P_significant']}")
 if not isben2['P_significant']:

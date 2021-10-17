@@ -106,7 +106,10 @@ class benfordslaw:
 
         # Compute Pvalues
         if self.method=='chi2':
-            tstats, Praw = chisquare(counts_emp, f_exp=counts_exp)
+            try:
+                tstats, Praw = chisquare(counts_emp, f_exp=counts_exp)
+            except:
+                raise Exception('The relative tolerance of the chisquare test is not reached. Try using another method such as "method=ks". This is not a bug but a feature: "https://github.com/scipy/scipy/issues/13362" ')
         elif self.method=='ks':
             tstats, Praw = ks_2samp(counts_emp, counts_exp)
         else:
