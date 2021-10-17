@@ -125,6 +125,7 @@ class benfordslaw:
         self.results = {}
         self.results['P'] = Praw
         self.results['t'] = tstats
+        self.results['P_significant'] = Praw<=self.alpha
         self.results['percentage_emp'] = np.c_[digit, percentage_emp]
 
         # return

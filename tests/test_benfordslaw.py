@@ -15,13 +15,14 @@ def test_benfordslaw():
     for method in methods:
         bl = benfordslaw(method=method)
         out = bl.fit(X)
-        assert [*out.keys()]==['P', 't', 'percentage_emp']
+        assert np.all(np.isin([*out.keys()], ['P', 't', 'percentage_emp', 'P_significant']))
 
     # TEST 2: check chi2
     bl = benfordslaw(method='chi2')
     out = bl.fit(X)
     assert out['P']==0.42298423856214706
     assert out['t']==8.10808210809422
+    assert out['P_significant']==False
     # TEST 3: check ks
     bl = benfordslaw(method='ks')
     out = bl.fit(X)
