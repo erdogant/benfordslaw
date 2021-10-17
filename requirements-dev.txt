@@ -1,0 +1,5 @@
+sphinx_rtd_theme
+rst2pdf
+sphinx
+pytest
+git+git://github.com/SuperKogito/sphinxcontrib-pdfembed
