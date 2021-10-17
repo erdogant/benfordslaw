@@ -111,15 +111,7 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 
 
 #### Citation
-Please cite benfordslaw in your publications if this is useful for your research. Here is an example BibTeX entry:
-```BibTeX
-@misc{erdogant2020benfordslaw,
-  title={benfordslaw},
-  author={Erdogan Taskesen},
-  year={2019},
-  howpublished={\url{https://github.com/erdogant/benfordslaw}},
-}
-```
+Please cite benfordslaw in your publications if this is useful for your research.
 
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law

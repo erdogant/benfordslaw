@@ -1,0 +1,23 @@
+# YAML 1.2
+---
+authors: 
+  -
+    family-names: Taskesen
+    given-names: Erdogan
+    orcid: "https://orcid.org/0000-0002-3430-9618"
+cff-version: "1.1.0"
+date-released: 2020-08-01
+keywords: 
+  - "python"
+  - "benfordslaw"
+  - "distribution"
+  - "fraud-detection"
+  - "chi-square"
+  - "anomaly-detection"
+  - "kolmogorov-smirnov"
+license: "MIT"
+message: "If you use this software, please cite it using these metadata."
+repository-code: "https://github.com/erdogant/benfordslaw"
+title: "benfordslaw is to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution."
+version: "1.0.2"
+...
