@@ -110,16 +110,19 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 
 ```
 
-
-#### Citation
-Please cite benfordslaw in your publications if this is useful for your research.
-
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
+
+#### Citation
+Please cite in your publications if this is useful for your research (see citation).
    
-### Maintainer
+### Maintainers
 * Erdogan Taskesen, github: [erdogant](https://github.com/erdogant)
-* This work is created and maintained in my free time. If you wish to buy me a <a href="https://erdogant.github.io/donate/?currency=USD&amount=5">Coffee</a> for this work, it is very appreciated.
-* Contributions are welcome.
-* Star it if you like it!
+
+### Contribute
+* All kinds of contributions are welcome!
+* If you wish to buy me a <a href="https://www.buymeacoffee.com/erdogant">Coffee</a> for this work, it is very appreciated :)
+
+### Licence
+See [LICENSE](LICENSE) for details.
