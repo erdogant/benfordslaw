@@ -4,6 +4,7 @@
 [![PyPI Version](https://img.shields.io/pypi/v/benfordslaw)](https://pypi.org/project/benfordslaw/)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](https://github.com/erdogant/benfordslaw/blob/master/LICENSE)
 [![Coffee](https://img.shields.io/badge/coffee-black-grey.svg)](https://erdogant.github.io/donate/?currency=USD&amount=5)
+[![BuyMeCoffee](https://img.shields.io/badge/buymeacoffee-grey.svg)](https://www.buymeacoffee.com/erdogant)
 [![Github Forks](https://img.shields.io/github/forks/erdogant/benfordslaw.svg)](https://github.com/erdogant/benfordslaw/network)
 [![GitHub Open Issues](https://img.shields.io/github/issues/erdogant/benfordslaw.svg)](https://github.com/erdogant/benfordslaw/issues)
 [![Project Status](http://www.repostatus.org/badges/latest/active.svg)](http://www.repostatus.org/#active)
