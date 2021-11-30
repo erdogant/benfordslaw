@@ -1,7 +1,7 @@
 """Examples for benfords law."""
 
-import benfordslaw
-print(benfordslaw.__version__)
+# import benfordslaw
+# print(benfordslaw.__version__)
 
 # %%
 import numpy as np
