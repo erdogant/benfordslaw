@@ -21,96 +21,76 @@
   2. The numbers should cover several orders of magnitude
   3. Dataset should preferably cover at least 1000 samples. Though Benford's law has been shown to hold true for datasets containing as few as 50 numbers.
 
+# 
+**⭐️ Star this repo if you like it ⭐️**
+#
 
-### Installation
-* Install ``benfordslaw`` from PyPI (recommended). benfordslaw is compatible with Python 3.6+ and runs on Linux, MacOS X and Windows. 
-* It is distributed under the MIT license.
+#### Install benfordslaw from PyPI
 
-#### Installation
-```
+```bash
 pip install benfordslaw
 ```
 
-* Alternatively, install benfordslaw from the GitHub source:
-```bash
-git clone https://github.com/erdogant/benfordslaw.git
-cd benfordslaw
-pip install -U .
-```  
-
 #### Import benfordslaw package
+
 ```python
 from benfordslaw import benfordslaw
-
-# Initialize
-bl = benfordslaw(alpha=0.05)
-
-# Load elections example
-df = bl.import_example(data='USA')
-
-# Extract election information.
-X = df['votes'].loc[df['candidate']=='Donald Trump'].values
-
-# Print
-print(X)
-# array([ 5387, 23618,  1710, ...,    16,    21,     0], dtype=int64)
-
-# Make fit
-results = bl.fit(X)
-
-# Plot
-bl.plot(title='Donald Trump')
 ```
-<p align="center">
+# 
+
+
+### [Documentation pages](https://erdogant.github.io/benfordslaw/)
+
+On the [documentation pages](https://erdogant.github.io/benfordslaw/) you can find detailed information about the working of the ``benfordslaw`` with many examples. 
+
+<hr> 
+
+### Examples
+
+# 
+
+* [Example: Analyze first digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-digit-test)
+
+<p align="left">
+  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-digit-test">
   <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig1.png" width="600" />
+  </a>
 </p>
 
 
-#### Analyze second digit-distribution
+# 
 
-```python
-from benfordslaw import benfordslaw
+* [Example: Analyze second digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html)
 
-# Initialize and set to analyze the second digit postion
-bl = benfordslaw(pos=2)
-# USA example
-df = bl.import_example(data='USA')
-results = bl.fit(X)
-# Plot
-bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
-
-```
+<p align="left">
+  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html">
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig2nd_digit_votes.png" width="600" />
+  </a>
+</p>
 
 
-#### Analyze last digit-distribution
+# 
 
-```python
-from benfordslaw import benfordslaw
+* [Example: Analyze last digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html#last-digit-test)
 
-# Initialize and set to analyze the last postion
-bl = benfordslaw(pos=-1)
-# USA example
-df = bl.import_example(data='USA')
-results = bl.fit(X)
-# Plot
-bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+<p align="left">
+  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html#last-digit-test">
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig_last_digit_votes.png" width="600" />
+  </a>
+</p>
 
-```
 
-#### Analyze second last digit-distribution
+# 
 
-```python
-from benfordslaw import benfordslaw
+* [Example: Analyze second last digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test)
 
-# Initialize and set to analyze the last postion
-bl = benfordslaw(pos=-2)
-# USA example
-df = bl.import_example(data='USA')
-results = bl.fit(X)
-# Plot
-bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+<p align="left">
+  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test">
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig_2nd_last_digit_votes.png" width="600" />
+  </a>
+</p>
 
-```
+
 
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law
