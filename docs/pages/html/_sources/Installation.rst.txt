@@ -8,10 +8,10 @@ Pypi
 .. code-block:: console
 
     # Install from Pypi:
-    pip install colourmap
+    pip install benfordslaw
 
     # Force update to latest version
-    pip install -U colourmap
+    pip install -U benfordslaw
 
 
 Github source
@@ -20,7 +20,7 @@ Github source
 .. code-block:: console
 
     # Install directly from github
-    pip install git+https://github.com/erdogant/colourmap
+    pip install git+https://github.com/erdogant/benfordslaw
 
 
 Uninstalling
@@ -30,12 +30,12 @@ Uninstalling
 Remove installation
 **********************
 
-Note that the removal of the environment will also remove the ``colourmap`` installation.
+Note that the removal of the environment will also remove the ``benfordslaw`` installation.
 
 .. code-block:: console
 
     # Install from Pypi:
-    pip uninstall colourmap
+    pip uninstall benfordslaw
 
 
 

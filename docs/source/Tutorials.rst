@@ -1,35 +1,44 @@
 Input
 ###########################
 
-The input for ``benfordslaw`` can be either a list of integers or strings. 
+The input for ``benfordslaw`` is a vector with numerical values that can either be a ``list`` or ``np.array``. 
+
 
 .. code:: python
 
 	# Import library
-	import benfordslaw as benfordslaw
-	
-	# Target labels
-	y=[1, 1, 2, 2, 3]
+	import numpy as np
+	from benfordslaw import benfordslaw
 
-	# String as input labels
-	y=["1", "1", "2", "2", "3"]
-	
-	# Generate colors
-	c_rgb, c_dict = benfordslaw.fromlist(y)
+	# Create uniform random data which does definitely not follow Benfords distribution.
+	X = np.random.randint(0, high=100, size=1000)
 
+	# Initialize with alpha and method.
+	bl = benfordslaw(alpha=0.05, method='chi2')
 
-Each of these input arrays can be in the form of:
+	print(X)
+	# array([13, 12,  2,  4, 99, 33, 71, 69, 65, 55,  6, 30, 30, 99, 43, 36, 12,....]
 
-	* List
-	* Numpy Array
+	# Fit
+	results = bl.fit(X)
+
+	# As expected, a significant P-value is detected for the inupt data X
+	# [benfordslaw] >Analyzing digit position: [1]
+	# [benfordslaw] >[chi2] Anomaly detected! P=3.46161e-73, Tstat=361.323
+
+	# Plot
+	bl.plot(title='Random data')
 
 
 Output
 ###########################
 
-The output of ``benfordslaw`` is a numpy array with RGB colors that range between [0-1, 0-1, 0-1].
-In case of using the ``fromlist`` :func:`benfordslaw.benfordslaw.fromlist`, a dictionary is also returned with the keys as input label and colors as items.
+The output of ``benfordslaw`` :func:`benfordslaw.benfordslaw.fit` is a dictionary with the following keys:
 
+	* P		 : P-value
+	* t		 : t-statistic
+	* P_significant	 : Boolean value that is set by alpha
+	* percentage_emp : Percentage distribution digits
 
 
 .. raw:: html

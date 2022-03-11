@@ -3,6 +3,17 @@
 # import benfordslaw
 # print(benfordslaw.__version__)
 
+# %%
+import numpy as np
+from benfordslaw import benfordslaw
+
+# Create uniform random data
+X = np.random.randint(0, high=100, size=1000)
+bl = benfordslaw(alpha=0.05, method='chi2')
+# Fit
+results = bl.fit(X)
+# Plot
+bl.plot(title='Random data')
 
 # %% Analyze Second digit
 from benfordslaw import benfordslaw

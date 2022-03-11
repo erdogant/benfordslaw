@@ -2,7 +2,7 @@ API References
 ------------------------------------------------
 
 
-.. automodule:: colourmap.colourmap
+.. automodule:: benfordslaw.benfordslaw
     :members:
     :undoc-members:
 

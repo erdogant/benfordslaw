@@ -15,8 +15,16 @@ Github
 ############
 
 .. note::
-	`Source code of colourmap can be found at Github <https://github.com/erdogant/colourmap/>`_
+	`Source code of benfordslaw can be found at Github <https://github.com/erdogant/benfordslaw/>`_
 
+
+Colab Notebook
+################
+
+.. note::
+	Experiment with ``benfordslaw`` library using the `Colab notebook`_.
+
+.. _Colab notebook: https://colab.research.google.com/github/erdogant/pca/blob/master/notebooks/benfordslaw.ipynb
 
 
 
