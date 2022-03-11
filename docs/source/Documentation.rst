@@ -24,7 +24,7 @@ Colab Notebook
 .. note::
 	Experiment with ``benfordslaw`` library using the `Colab notebook`_.
 
-.. _Colab notebook: https://colab.research.google.com/github/erdogant/bnlearn/blob/master/notebooks/benfordslaw.ipynb
+.. _Colab notebook: https://colab.research.google.com/github/erdogant/benfordslaw/blob/master/notebooks/benfordslaw.ipynb
 
 
 
