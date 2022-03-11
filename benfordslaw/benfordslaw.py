@@ -246,7 +246,7 @@ class benfordslaw:
         """Return list of expected Benford's Law counts for total sample count."""
         out=[]
         for p in self.leading_digits:
-            out.append(round(p * total_count / 100))
+            out.append((p * total_count / 100))
         return(out)
 
 
