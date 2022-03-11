@@ -22,7 +22,7 @@ setuptools.setup(
      description="benfordslaw is to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution.",
      long_description=long_description,
      long_description_content_type="text/markdown",
-     url="https://github.com/erdogant/benfordslaw",
+     url="https://erdogant.github.io/benfordslaw",
 	 download_url = 'https://github.com/erdogant/benfordslaw/archive/'+new_version+'.tar.gz',
      packages=setuptools.find_packages(), # Searches throughout all dirs for files to include
      include_package_data=True, # Must be true to include files depicted in MANIFEST.in
