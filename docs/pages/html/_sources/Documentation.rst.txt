@@ -18,6 +18,7 @@ Github
 	`Source code of benfordslaw can be found at Github <https://github.com/erdogant/benfordslaw/>`_
 
 
+
 Colab Notebook
 ################
 
@@ -25,6 +26,7 @@ Colab Notebook
 	Experiment with ``benfordslaw`` library using the `Colab notebook`_.
 
 .. _Colab notebook: https://colab.research.google.com/github/erdogant/benfordslaw/blob/master/notebooks/benfordslaw.ipynb
+
 
 
 
