@@ -3,6 +3,16 @@
 # import benfordslaw
 # print(benfordslaw.__version__)
 
+# %% Issue #8
+import pandas as pd
+from benfordslaw import benfordslaw
+
+bl = benfordslaw(alpha=0.05)
+
+data = pd.DataFrame({'value': [1,2,3,4,5]})
+bl.fit(data['value'].astype(int)) # this works fine 
+bl.fit(data['value'].astype(pd.Int64Dtype())) #this throws an error
+
 # %%
 import numpy as np
 from benfordslaw import benfordslaw
