@@ -5,7 +5,7 @@ import numpy as np
 from benfordslaw import benfordslaw
 import unittest
 
-class TestCLUSTIMAGE(unittest.TestCase):
+class TestBENFORDSLAW(unittest.TestCase):
 
 	def test_benfordslaw(self):
 		bl = benfordslaw()
