@@ -290,7 +290,8 @@ def _count_digit(data, d, digit_range):
     # Get the ith digit
     digits = np.zeros_like(data)
     Iloc = data>=np.power(10, d)
-    Iloc = Iloc.fillna(False).astype(bool)
+    Iloc[np.isnan(Iloc)]=False
+    Iloc = Iloc.astype(bool)
     digits[Iloc] = list(map(lambda x: int(str(x)[d]), data[Iloc]))
 
     # Count occurences. Make sure every position is for [1-9]
