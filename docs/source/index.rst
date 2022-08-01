@@ -23,8 +23,8 @@ Assumptions of the data
 Sponsor
 =======
 **This library is created and maintained in my free time**, and I like to work on my open-source libraries!
-If you like this library too, you can help by becoming a sponsor! The easiest way is by simply following me on medium, and it will cost you nothing! In return, you will receive the blogs that I write! Simply go to my [medium profile](https://erdogant.medium.com/) and press "follow".
-Read more why this is important on my sponsor page. There are various other ways to sponsor which you can read on `sponsor github page <https://github.com/sponsors/erdogant/>`_.
+If you like this library too, you can help by becoming a sponsor! The easiest way is by simply following me on medium, and it will cost you nothing! In return, you will receive the blogs that I write! Simply go to my `medium profile <https://erdogant.medium.com/>`_ and press "follow".
+Read more on my `sponsor github page <https://github.com/sponsors/erdogant/>`_ why this is important. This also gives you various other ways to sponsor me!
 
 
 
