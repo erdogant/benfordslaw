@@ -3,6 +3,25 @@
 # import benfordslaw
 # print(benfordslaw.__version__)
 
+# %% Issue #9
+import pandas as pd
+from benfordslaw import benfordslaw
+
+# Initialize
+bl = benfordslaw(pos=2)
+
+# Load elections example
+df = bl.import_example(data='USA')
+
+# Extract election information.
+X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+
+X = pd.DataFrame(X)
+
+# Make fit
+results = bl.fit(X)
+
+
 # %% Issue #8
 import pandas as pd
 from benfordslaw import benfordslaw
