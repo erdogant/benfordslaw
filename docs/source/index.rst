@@ -26,7 +26,6 @@ If you like this library too, you can help by becoming a sponsor! The easiest wa
 Read more on my `sponsor github page <https://github.com/sponsors/erdogant/>`_ why this is important. This also gives you various other ways to sponsor me!
 
 
-
 Star is important too!
 ======================
 If you like this project, **star** this repo at the github page! This is important because only then I know how much you like it :)
