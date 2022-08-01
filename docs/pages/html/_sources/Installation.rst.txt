@@ -26,10 +26,6 @@ Github source
 Uninstalling
 ################
 
-
-Remove installation
-**********************
-
 Note that the removal of the environment will also remove the ``benfordslaw`` installation.
 
 .. code-block:: console
