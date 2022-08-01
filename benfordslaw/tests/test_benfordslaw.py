@@ -35,3 +35,12 @@ class TestBENFORDSLAW(unittest.TestCase):
 
 		# TEST 4: check percentages
 		assert np.all(out['percentage_emp'][:,1]==[31.64521544487969, 16.508114157806382, 12.479015109121432, 9.820928931169558, 7.862339115836598, 6.3794068270845, 5.8477895914941245, 4.616675993284835, 4.8405148293228875])
+
+	def test_dataframe(self):
+		bl = benfordslaw()
+		df = bl.import_example()
+		Iloc = df['candidate']=='Donald Trump'
+		X = df['votes'].loc[Iloc]
+		results = bl.fit(X)
+		np.all(np.isin([*results.keys()], ['P', 't', 'percentage_emp', 'P_significant']))
+		assert np.all(results['percentage_emp'][:,1]==[31.64521544487969, 16.508114157806382, 12.479015109121432, 9.820928931169558, 7.862339115836598, 6.3794068270845, 5.8477895914941245, 4.616675993284835, 4.8405148293228875])
