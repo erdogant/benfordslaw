@@ -98,8 +98,10 @@ class benfordslaw:
 
         """
         # Make distribution first digits
-        if self.verbose>=3:
-            print("[benfordslaw] >Analyzing digit position: [%s]" %(self.pos))
+        if self.verbose>=3: print("[benfordslaw] >Analyzing digit position: [%s]" %(self.pos))
+        # Convert pandas dataframe to numpy array
+        if isinstance(X, pd.DataFrame): X = X.values.ravel()
+        # Count digit
         counts_emp, percentage_emp, total_count, digit = _count_digit(X, self.pos, self.digit_range)
         # Expected counts
         counts_exp = self._get_expected_counts(total_count)
