@@ -106,6 +106,9 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 bl = benfordslaw(pos=-1)
 # USA example
 df = bl.import_example(data='USA')
+Iloc = df['candidate']=='Donald Trump'
+X = df['votes'].loc[Iloc].values
+
 results = bl.fit(X)
 # Plot
 bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
@@ -115,6 +118,9 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 bl = benfordslaw(pos=-2)
 # USA example
 df = bl.import_example(data='USA')
+Iloc = df['candidate']=='Donald Trump'
+X = df['votes'].loc[Iloc].values
+
 results = bl.fit(X)
 # Plot
 bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
