@@ -300,7 +300,7 @@ def _count_digit(data, d, digit_range):
     empirical_counts = np.zeros(len(digit_range))
     digitnr = []
     for i in digit_range:
-        empirical_counts[i - 1] = list(digits).count(i)
+        empirical_counts[i - digit_range[0]] = list(digits[Iloc]).count(i)
         digitnr.append(i)
 
     # Total amount
