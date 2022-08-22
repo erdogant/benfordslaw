@@ -55,7 +55,7 @@ class benfordslaw:
         elif np.abs(pos)==2:
             self.leading_digits = [12, 11.4, 10.9, 10.4, 10, 9.7, 9.3, 9, 8.8, 8.5]
             self.digit_range = range(0, 10)
-        elif np.abs(pos)>2:
+        elif (np.abs(pos)>2) or (np.abs(pos)==0):
             raise Exception('[benfordslaw] >There is no leading digit distribution specified for this digit!')
 
     def fit(self, X):
