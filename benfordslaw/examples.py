@@ -3,6 +3,20 @@
 # import benfordslaw
 # print(benfordslaw.__version__)
 
+# %% Issue #10
+import pandas as pd
+from benfordslaw import benfordslaw
+
+bl = benfordslaw(pos=-2)
+# USA example
+df = bl.import_example(data='USA')
+Iloc = df['candidate']=='Donald Trump'
+X = df['votes'].loc[Iloc].values
+
+results = bl.fit(X)
+# Plot
+bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
 # %% Issue #9
 import pandas as pd
 from benfordslaw import benfordslaw
