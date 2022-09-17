@@ -26,9 +26,7 @@ If you ❤️ this project, **star** this repo at the `github page <https://gith
 
 Github
 ======
-`Github benfordslaw <https://github.com/erdogant/benfordslaw/>`_.
-Please report bugs, issues and feature extensions there.
-
+Please report bugs, issues and feature extensions at `github <https://github.com/erdogant/benfordslaw/>`_.
 
 
 
