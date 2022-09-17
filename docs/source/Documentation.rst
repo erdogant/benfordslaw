@@ -28,6 +28,9 @@ Colab Notebook
 .. _Colab notebook: https://colab.research.google.com/github/erdogant/benfordslaw/blob/master/notebooks/benfordslaw.ipynb
 
 
+Citing
+#########
+The bibtex can be found in the right side menu at the `github page <https://github.com/erdogant/benfordslaw/>`_.
 
 
 .. raw:: html

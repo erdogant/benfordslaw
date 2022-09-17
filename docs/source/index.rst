@@ -31,11 +31,6 @@ Please report bugs, issues and feature extensions there.
 
 
 
-Citing *benfordslaw*
-====================
-The bibtex can be found in the right side menu at the `github page <https://github.com/erdogant/benfordslaw/>`_.
-
-
 
 Content
 =======
