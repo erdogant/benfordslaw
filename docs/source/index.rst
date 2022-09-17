@@ -21,7 +21,7 @@ benfordslaw's documentation!
 
 Star is important!
 ======================
-If you ❤️ this project, **star** this repo at the `github page <https://github.com/d3blocks/d3blocks>`_!
+If you ❤️ this project, **star** this repo at the `github page <https://github.com/erdogant/benfordslaw/>`_!
 
 
 Github
