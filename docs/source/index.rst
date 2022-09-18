@@ -19,9 +19,11 @@ benfordslaw's documentation!
    +----------+
 
 
-Star is important!
-======================
-If you ❤️ this project, **star** this repo at the `github page <https://github.com/erdogant/benfordslaw/>`_!
+
+
+You contribution is important
+==============================
+If you ❤️ this project, **star** this repo at the `github page <https://github.com/erdogant/benfordslaw/>`_ and have a look at the `sponser page <https://github.com/erdogant/benfordslaw/pages/html/Documentation.html>`_!
 
 
 Github
