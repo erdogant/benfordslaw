@@ -23,7 +23,7 @@ benfordslaw's documentation!
 
 You contribution is important
 ==============================
-If you ❤️ this project, **star** this repo at the `github page <https://github.com/erdogant/benfordslaw/>`_ and have a look at the `sponser page <https://github.com/erdogant/benfordslaw/pages/html/Documentation.html>`_!
+If you ❤️ this project, **star** this repo at the `github page <https://github.com/erdogant/benfordslaw/>`_ and have a look at the `sponser page <https://erdogant.github.io/benfordslaw/pages/html/Documentation.html>`_!
 
 
 Github
@@ -63,7 +63,6 @@ Content
   Coding quality
   benfordslaw.benfordslaw
 
-* :ref:`genindex`
 
 
 
