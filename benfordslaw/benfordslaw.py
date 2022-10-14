@@ -183,7 +183,6 @@ class benfordslaw:
             title = title + "\nNo anomaly detected. P=%g, Tstat=%g" %(self.results['P'], self.results['t'])
 
         # Add some text for labels, title and custom x-axis tick labels, etc.
-        fig.canvas.set_window_title('Percentage First Digits')
         ax.set_title(title, fontsize=fontsize)
         ax.set_ylabel('Frequency (%)', fontsize=fontsize)
         ax.set_xlabel('Digits', fontsize=fontsize)

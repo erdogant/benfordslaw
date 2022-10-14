@@ -141,3 +141,5 @@ for candidate in df['candidate'].unique():
     X = df['votes'].loc[Iloc].values
     bl.fit(X)
     bl.plot(title=candidate)
+
+# %%
