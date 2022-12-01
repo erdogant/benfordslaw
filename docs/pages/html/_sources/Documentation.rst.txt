@@ -1,14 +1,7 @@
 Sponsor
 ############
 
-
-.. tip::
-	If you like this project, **Star** this repo at the github page and become a **sponsor**!
-	Read more why this is important on my sponsor page. The **sponsor button** will direct you to the sponsor github page.
-
-.. raw:: html
-
-	<iframe src="https://github.com/sponsors/erdogant/button" title="Sponsor erdogant" height="35" width="116" style="border: 0;"></iframe>
+.. include:: sponsor.rst
 
 
 Github
