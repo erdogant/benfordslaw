@@ -1,4 +1,4 @@
-"""Test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution."""
+"""benfordslaw is a python library to test the frequency distribution of leading digits."""
 
 # --------------------------------------------------
 # Name        : benfordslaw.py

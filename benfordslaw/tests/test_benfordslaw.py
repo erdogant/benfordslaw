@@ -6,6 +6,11 @@ from benfordslaw import benfordslaw
 import unittest
 
 class TestBENFORDSLAW(unittest.TestCase):
+	def test_nums(self):
+		bl = benfordslaw()
+		X = [12, 23, 34, 45, 56, 67, 78, 89, 90, 100]
+		out = bl.fit(np.array(X))
+		np.all(out['percentage_emp'][:,1]==[20, 10, 10, 10, 10, 10, 10, 10, 10])
 
 	def test_benfordslaw(self):
 		bl = benfordslaw()

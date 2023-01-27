@@ -19,7 +19,7 @@ setuptools.setup(
      version=new_version,
      author="Erdogan Taskesen",
      author_email="erdogant@gmail.com",
-     description="benfordslaw is to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution.",
+     description="benfordslaw is a python library to test the frequency distribution of leading digits.",
      long_description=long_description,
      long_description_content_type="text/markdown",
      url="https://erdogant.github.io/benfordslaw",

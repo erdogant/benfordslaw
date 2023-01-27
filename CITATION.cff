@@ -18,6 +18,6 @@ keywords:
 license: "MIT"
 message: "If you use this software, please cite it using these metadata."
 repository-code: "https://erdogant.github.io/benfordslaw"
-title: "benfordslaw is to test the frequency distribution of leading digits."
+title: "benfordslaw is a python library to test the frequency distribution of leading digits."
 version: "1.0.2"
 ...
