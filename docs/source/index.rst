@@ -1,6 +1,11 @@
 benfordslaw
 ===========
 
+|python| |pypi| |docs| |stars| |LOC| |downloads_month| |downloads_total| |license| |forks| |open issues| |project status| |colab| |DOI| |repo-size| |donate|
+
+.. include:: add_top.add
+
+
 .. |figd| image:: ../figs/fig1.png
 
 .. table:: 
@@ -12,9 +17,6 @@ benfordslaw
 
 -----------------------------------
 
-|python| |pypi| |docs| |LOC| |downloads_month| |downloads_total| |license| |forks| |open issues| |project status| |colab| |DOI| |donate|
-
-.. include:: add_top.add
 
 ``benfordslaw`` is Python package to test if an empirical (observed) distribution differs significantly from a theoretical (expected, Benfords) distribution. The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small. This method can be used if you want to test whether your set of numbers may be artificial (or manipulated). If a certain set of values follows Benford's Law then model's for the corresponding predicted values should also follow Benford's Law. Normal data (unmanipulated) does trend with Benford's Law, whereas manipulated or fraudulent data does not.
 
@@ -24,6 +26,18 @@ benfordslaw
 	* The numbers should cover several orders of magnitude
 	* Dataset should preferably cover at least 1000 samples. Though Benford's law has been shown to hold true for datasets containing as few as 50 numbers.
 
+
+-----------------------------------
+
+.. note::
+	**Your ❤️ is important to keep maintaining this package.** You can `support <https://erdogant.github.io/benfordslaw/pages/html/Documentation.html>`_ in various ways, have a look at the `sponser page <https://erdogant.github.io/benfordslaw/pages/html/Documentation.html>`_.
+	Report bugs, issues and feature extensions at `github <https://github.com/erdogant/benfordslaw/>`_ page.
+
+	.. code-block:: console
+
+	   pip install benfordslaw
+
+-----------------------------------
 
 
 Contents
@@ -121,6 +135,14 @@ Indices and tables
 .. |DOI| image:: https://zenodo.org/badge/239205250.svg
     :alt: Cite
     :target: https://zenodo.org/badge/latestdoi/239205250
+
+.. |stars| image:: https://img.shields.io/github/stars/erdogant/benfordslaw
+    :alt: Stars
+    :target: https://img.shields.io/github/stars/erdogant/benfordslaw
+
+.. |repo-size| image:: https://img.shields.io/github/repo-size/erdogant/benfordslaw
+    :alt: repo-size
+    :target: https://img.shields.io/github/repo-size/erdogant/benfordslaw
 
 
 .. include:: add_bottom.add

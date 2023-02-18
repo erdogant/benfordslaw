@@ -78,13 +78,5 @@ The following tests are secured using :func:`tests.test_benfordslaw`:
 
 
 
-.. raw:: html
-
-	<hr>
-	<center>
-		<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEADP27U&placement=erdogantgithubio" id="_carbonads_js"></script>
-	</center>
-	<hr>
-
 
 .. include:: add_bottom.add
