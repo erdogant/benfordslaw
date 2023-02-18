@@ -1,3 +1,5 @@
+.. include:: add_top.add
+
 First digit test
 ####################################
 
@@ -145,10 +147,4 @@ Let's check the the votes on the **last digit** and determine whether it signifi
 
 
 
-.. raw:: html
-
-	<hr>
-	<center>
-		<script async type="text/javascript" src="//cdn.carbonads.com/carbon.js?serve=CEADP27U&placement=erdogantgithubio" id="_carbonads_js"></script>
-	</center>
-	<hr>
+.. include:: add_bottom.add

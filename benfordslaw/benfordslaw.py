@@ -65,8 +65,6 @@ class benfordslaw:
     def fit(self, X):
         """Test if an empirical (observed) distribution significantly differs from a theoretical (expected, Benfords) distribution.
 
-        Description
-        -----------
         The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small.
         This method can be used if you want to test whether your set of numbers may be artificial (or manipulated).
         Let us assume the null Hypothesis: H0: observed and theoretical distributions are the same.
@@ -205,8 +203,6 @@ class benfordslaw:
     def import_example(self, data='USA', verbose=3):
         """Import example dataset from github source.
 
-        Description
-        -----------
         Import one of the few datasets from github source.
 
         Parameters
