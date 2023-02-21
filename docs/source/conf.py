@@ -25,14 +25,14 @@ download_file('https://erdogant.github.io/docs/rst/add_carbon.add', "add_carbon.
 download_file('https://erdogant.github.io/docs/rst/add_top.add', "add_top.add")
 download_file('https://erdogant.github.io/docs/rst/add_bottom.add', "add_bottom.add")
 ########################################################################################
-add_includes_to_rst_files()
+add_includes_to_rst_files(top=False, bottom=True)
 ########################################################################################
 # Import PDF from directory in rst files
-embed_in_rst(currpath, 'pdf', '.pdf', "Additional Information", 'Additional_Information.rst')
+# embed_in_rst(currpath, 'pdf', '.pdf', "Additional Information", 'Additional_Information.rst')
 ########################################################################################
 # Import notebooks in HTML format
-convert_ipynb_to_html(currpath, 'notebooks', '.ipynb')
-embed_in_rst(currpath, 'notebooks', '.html', "Notebook", 'notebook.rst')
+# convert_ipynb_to_html(currpath, 'notebooks', '.ipynb')
+# embed_in_rst(currpath, 'notebooks', '.html', "Notebook", 'notebook.rst')
 ########################################################################################
 
 # -- Project information -----------------------------------------------------

@@ -3,8 +3,6 @@ benfordslaw
 
 |python| |pypi| |docs| |stars| |LOC| |downloads_month| |downloads_total| |license| |forks| |open issues| |project status| |colab| |DOI| |repo-size| |donate|
 
-.. include:: add_top.add
-
 
 .. |figd| image:: ../figs/fig1.png
 
