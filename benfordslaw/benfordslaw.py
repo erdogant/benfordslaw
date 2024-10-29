@@ -88,14 +88,19 @@ class benfordslaw:
 
         Examples
         --------
+        >>> # Import library
         >>> from benfordslaw import benfordslaw
+        >>> #
         >>> # Initialize
-        >>> bl = benfordslaw()
-        >>> df = bl.import_example()
+        >>> bl = benfordslaw(pos=1)
+        >>> #
         >>> # Get data for one candidate
+        >>> df = bl.import_example()
         >>> X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+        >>> #
         >>> # Fit
         >>> results = bl.fit(X)
+        >>> #
         >>> # Figure
         >>> fig, ax = bl.plot()
 
@@ -274,7 +279,7 @@ def _count_first_digit(data):
 # %% Counts and the frequencies in percentage for the second digit
 def _count_digit(data, d, digit_range):
     # Get only non-zero values
-    data = data[data>=1]
+    data = data[data >= 1]
 
     # Reverse numbers if last digits is required
     if d < 0:
@@ -287,8 +292,8 @@ def _count_digit(data, d, digit_range):
 
     # Get the ith digit
     digits = np.zeros_like(data)
-    Iloc = data>=np.power(10, d)
-    Iloc[np.isnan(Iloc)]=False
+    Iloc = data >= np.power(10, d)
+    Iloc[np.isnan(Iloc)] = False
     Iloc = Iloc.astype(bool)
     digits[Iloc] = list(map(lambda x: int(str(x)[d]), data[Iloc]))
 
@@ -304,7 +309,7 @@ def _count_digit(data, d, digit_range):
     # Make percentage
     empirical_percentage = [(i / total_count) * 100 for i in empirical_counts]
     # Return
-    return(empirical_counts, empirical_percentage, total_count, digitnr)
+    return empirical_counts, empirical_percentage, total_count, digitnr
 
 
 # %% Main
