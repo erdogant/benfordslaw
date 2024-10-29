@@ -2,4 +2,4 @@ matplotlib
 numpy 
 scipy
 pandas
-datazets
+datazets>=0.2.0

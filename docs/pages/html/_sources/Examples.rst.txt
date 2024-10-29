@@ -9,10 +9,10 @@ We will check whether the votes are fraudulent based on benfords distribution.
 	from benfordslaw import benfordslaw
 
 	# Initialize
-	bl = benfordslaw(alpha=0.05)
+	bl = benfordslaw(pos=1, alpha=0.05)
 
 	# Load elections example
-	df = bl.import_example(data='USA')
+	df = bl.import_example(data='elections_usa')
 
 	# Extract election information.
 	X = df['votes'].loc[df['candidate']=='Donald Trump'].values
@@ -52,7 +52,7 @@ Let's check the the votes on the second digit and determine whether it significa
 	bl = benfordslaw(pos=2)
 
 	# Load elections example
-	df = bl.import_example(data='USA')
+	df = bl.import_example(data='elections_usa')
 
 	# Extract election information.
 	X = df['votes'].loc[df['candidate']=='Donald Trump'].values
@@ -87,7 +87,7 @@ Let's check the the votes on the **last digit** and determine whether it signifi
 	bl = benfordslaw(pos=-1)
 
 	# Load elections example
-	df = bl.import_example(data='USA')
+	df = bl.import_example(data='elections_usa')
 
 	# Extract election information.
 	X = df['votes'].loc[df['candidate']=='Donald Trump'].values
@@ -122,7 +122,7 @@ Let's check the the votes on the **last digit** and determine whether it signifi
 	bl = benfordslaw(pos=-2)
 
 	# Load elections example
-	df = bl.import_example(data='USA')
+	df = bl.import_example(data='elections_usa')
 
 	# Extract election information.
 	X = df['votes'].loc[df['candidate']=='Donald Trump'].values

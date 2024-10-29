@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html class="writer-html5" lang="en" >
+<html class="writer-html5" lang="en" data-content_root="./">
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>First digit test &mdash; benfordslaw benfordslaw documentation</title>
-      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
-      <link rel="stylesheet" href="_static/css/custom.css" type="text/css" />
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=fa44fd50" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=e0179649" />
+
+  
   <!--[if lt IE 9]>
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=e3a190cb"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -30,14 +31,18 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search" >
-            <a href="index.html" class="icon icon-home"> benfordslaw
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            benfordslaw
           </a>
               <div class="version">
                 1.2.2
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" />
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
   </form>
@@ -85,8 +90,8 @@
         <div class="rst-content">
           <div role="navigation" aria-label="Page navigation">
   <ul class="wy-breadcrumbs">
-      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
-      <li>First digit test</li>
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">First digit test</li>
       <li class="wy-breadcrumbs-aside">
             <a href="_sources/Examples.rst.txt" rel="nofollow"> View page source</a>
       </li>
@@ -97,16 +102,16 @@
            <div itemprop="articleBody">
              
   <section id="first-digit-test">
-<h1>First digit test<a class="headerlink" href="#first-digit-test" title="Permalink to this heading"></a></h1>
+<h1>First digit test<a class="headerlink" href="#first-digit-test" title="Link to this heading"></a></h1>
 <p>In the following example we load the 2016 elections data of the USA for various candidates.
 We will check whether the votes are fraudulent based on benfords distribution.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
 <span class="c1"># Initialize</span>
-<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
+<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -123,10 +128,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id1">
-<caption><span class="caption-text">First digit.</span><a class="headerlink" href="#id1" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
+<caption><span class="caption-text">First digit.</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig1" src="_images/fig1.png" /></p></td>
 </tr>
@@ -134,7 +136,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </table>
 </section>
 <section id="second-digit-test">
-<h1>Second digit test<a class="headerlink" href="#second-digit-test" title="Permalink to this heading"></a></h1>
+<h1>Second digit test<a class="headerlink" href="#second-digit-test" title="Link to this heading"></a></h1>
 <p>Let’s check the the votes on the second digit and determine whether it significantly deviates from benfords distribution.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
@@ -142,7 +144,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -155,10 +157,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id2">
-<caption><span class="caption-text">Second digit.</span><a class="headerlink" href="#id2" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
+<caption><span class="caption-text">Second digit.</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig2" src="_images/fig2nd_digit_votes.png" /></p></td>
 </tr>
@@ -166,7 +165,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </table>
 </section>
 <section id="last-digit-test">
-<h1>Last digit test<a class="headerlink" href="#last-digit-test" title="Permalink to this heading"></a></h1>
+<h1>Last digit test<a class="headerlink" href="#last-digit-test" title="Link to this heading"></a></h1>
 <p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
@@ -174,7 +173,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -187,10 +186,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id3">
-<caption><span class="caption-text">Last digit.</span><a class="headerlink" href="#id3" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
+<caption><span class="caption-text">Last digit.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig3" src="_images/fig_last_digit_votes.png" /></p></td>
 </tr>
@@ -198,7 +194,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </table>
 </section>
 <section id="second-last-digit-test">
-<h1>Second last digit test<a class="headerlink" href="#second-last-digit-test" title="Permalink to this heading"></a></h1>
+<h1>Second last digit test<a class="headerlink" href="#second-last-digit-test" title="Link to this heading"></a></h1>
 <p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
@@ -206,7 +202,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;USA&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
 <span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
@@ -219,10 +215,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id4">
-<caption><span class="caption-text">Second last digit.</span><a class="headerlink" href="#id4" title="Permalink to this table"></a></caption>
-<colgroup>
-<col style="width: 100%" />
-</colgroup>
+<caption><span class="caption-text">Second last digit.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig4" src="_images/fig_2nd_last_digit_votes.png" /></p></td>
 </tr>
