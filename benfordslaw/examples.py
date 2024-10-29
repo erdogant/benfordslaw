@@ -5,6 +5,14 @@
 
 # %% Issue #13
 # https://github.com/erdogant/benfordslaw/issues/13
+from benfordslaw import benfordslaw
+import pandas as pd
+# import datzets as dz
+# df = dz.get(data='elections')
+
+bl = benfordslaw()
+df = bl.import_example(data='elections_usa')
+df = bl.import_example(data='elections_rus')
 
 
 # %% Issue #10

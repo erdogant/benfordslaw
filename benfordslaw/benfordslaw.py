@@ -42,6 +42,7 @@ class benfordslaw:
             Digit position the be analyzed. 1: first digit, 2: second digit etc. -1: the last position, -2: second last digit etc
         verbose : int, optional
             Print message to screen. The default is 3.
+
         """
         if (alpha is None): alpha=1
         self.alpha = alpha
@@ -58,7 +59,7 @@ class benfordslaw:
         elif np.abs(pos)==3:
             self.leading_digits = [10.2, 10.1,	10.1, 10.1,	10.0, 10.0,	9.9, 9.9, 9.9, 9.8]
             self.digit_range = range(0, 10) 
-        
+
         elif (np.abs(pos)>3) or (np.abs(pos)==0):
             raise Exception('[benfordslaw] >There is no leading digit distribution specified for this digit!')
 
@@ -199,56 +200,50 @@ class benfordslaw:
         plt.show()
         return fig, ax
 
-    # Import example dataset from github.
-    def import_example(self, data='USA', verbose=3):
+    def import_example(self, data='elections', url=None, sep=',', verbose=3):
         """Import example dataset from github source.
 
-        Import one of the few datasets from github source.
+        Import one of the few datasets from github source or specify your own download url link.
 
         Parameters
         ----------
         data : str
-            * 'USA'
-            * 'RUS'
-        verbose : int, (default: 3)
-            Print message to screen.
+            Example data sets:
+            'elections_rus'
+            'elections_usa'
+        url : str
+            url link to to dataset.
+        sep : Seperator (String)
+            When using URL, seperate the input file based on this seperator.
 
         Returns
         -------
         pd.DataFrame()
             Dataset containing mixed features.
 
+        References
+        ----------
+            * https://github.com/erdogant/datazets
+
         """
-        if data=='USA':
-            url='https://erdogant.github.io/datasets/USA_2016_elections.zip'
-        elif data=='RUS':
-            url='https://erdogant.github.io/datasets/RUS_2018_elections.zip'
+        if data == 'elections_usa':
+            url = 'https://erdogant.github.io/datasets/USA_2016_elections.zip'
+            data = None
+        elif data == 'elections_rus':
+            url = 'https://erdogant.github.io/datasets/RUS_2018_elections.zip'
+            data = None
         else:
-            if verbose>=3: print('[benfordslaw] >[%s] does not exists. Try "USA" or "RUS" <return>' %(data))
+            if verbose >= 3: print('[benfordslaw] >[%s] does not exists. Try "elections_usa" or "elections_rus" <return>' %(data))
 
-        curpath = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'data')
-        PATH_TO_DATA = os.path.join(curpath, wget.filename_from_url(url))
-        if not os.path.isdir(curpath):
-            os.makedirs(curpath, exist_ok=True)
-
-        # Check file exists.
-        if not os.path.isfile(PATH_TO_DATA):
-            if verbose>=3: print('[benfordslaw] >Downloading [%s] dataset from github source..' %(data))
-            wget.download(url, curpath)
-
-        # Import local dataset
-        if verbose>=3: print('[benfordslaw] >Import dataset [%s]' %(data))
-        df = pd.read_csv(PATH_TO_DATA, sep=',')
-        # Return
-        return df
+        return dz.get(data=data, url=url, sep=sep)
 
     # Compute expected counts
     def _get_expected_counts(self, total_count):
         """Return list of expected Benford's Law counts for total sample count."""
-        out=[]
+        out = []
         for p in self.leading_digits:
             out.append((p * total_count / 100))
-        return(out)
+        return out
 
 
 # %% Counts and the frequencies in percentage for the first digit

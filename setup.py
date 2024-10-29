@@ -13,7 +13,7 @@ else:
 with open("README.md", "r") as fh:
     long_description = fh.read()
 setuptools.setup(
-     install_requires=['matplotlib','numpy','scipy','pandas','wget'],
+     install_requires=['matplotlib','numpy','scipy','pandas', 'datazets'],
      python_requires='>=3',
      name='benfordslaw',
      version=new_version,
