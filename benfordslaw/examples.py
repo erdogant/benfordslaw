@@ -2,6 +2,23 @@
 
 # import benfordslaw
 # print(benfordslaw.__version__)
+from benfordslaw import benfordslaw
+
+# Initialize
+bl = benfordslaw(pos=1)
+
+# Load elections example
+df = bl.import_example(data='elections_usa')
+
+# Extract election information.
+X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+
+# Make fit
+results = bl.fit(X)
+
+# Plot
+bl.plot(title='Results of Donald Trump based on 2nd digit', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
 
 # %% Issue #13
 # https://github.com/erdogant/benfordslaw/issues/13
