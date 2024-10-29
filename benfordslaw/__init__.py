@@ -2,7 +2,7 @@ from benfordslaw.benfordslaw import benfordslaw
 
 __author__ = 'Erdogan Tasksen'
 __email__ = 'erdogant@gmail.com'
-__version__ = '1.2.2'
+__version__ = '1.3.0'
 
 # module level doc-string
 __doc__ = """
@@ -15,14 +15,19 @@ This method can be used if you want to test whether your set of numbers may be a
 
 Example
 -------
+>>> # Import library
 >>> from benfordslaw import benfordslaw
+>>> # 
 >>> # Initialize
 >>> bl = benfordslaw()
+>>> # 
 >>> df = bl.import_example()
 >>> # Get data for one candidate
 >>> X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+>>> # 
 >>> # Fit
 >>> results = bl.fit(X)
+>>> # 
 >>> # Figure
 >>> fig, ax = bl.plot()
 
