@@ -18,7 +18,7 @@ from scipy.stats import ks_2samp
 from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
 import math
-import wget
+import datazets as dz
 
 
 # %% Class
