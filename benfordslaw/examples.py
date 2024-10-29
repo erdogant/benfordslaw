@@ -5,7 +5,7 @@
 from benfordslaw import benfordslaw
 
 # Initialize
-pos=3
+pos=-2
 bl = benfordslaw(pos=pos)
 
 # Load elections example
