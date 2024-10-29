@@ -3,6 +3,10 @@
 # import benfordslaw
 # print(benfordslaw.__version__)
 
+# %% Issue #13
+# https://github.com/erdogant/benfordslaw/issues/13
+
+
 # %% Issue #10
 import pandas as pd
 from benfordslaw import benfordslaw
