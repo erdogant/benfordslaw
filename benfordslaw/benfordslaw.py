@@ -51,18 +51,19 @@ class benfordslaw:
         self.verbose = verbose
 
         # Benford's Law percentage-distribution for leading digits 1-9
-        if pos==1 or pos==-1:
+        if pos==1:
             self.leading_digits = np.array(list(map(lambda x: math.log(1 + (1 / x), 10), np.arange(1, 10)))) * 100
             self.digit_range = range(1, 10)
-        elif pos==2 or pos==-2:
+        elif pos==2:
             self.leading_digits = [12, 11.4, 10.9, 10.4, 10, 9.7, 9.3, 9, 8.8, 8.5]
             self.digit_range = range(0, 10)
-        elif pos==3 or pos==-3:
+        elif pos==3:
             self.leading_digits = [10.2, 10.1, 10.1, 10.1, 10.0, 10.0, 9.9, 9.9, 9.9, 9.8]
             self.digit_range = range(0, 10)
-        elif pos>3 or pos<-3:
+        elif pos>3 or pos<0:
             if verbose>=3: print(f'[benfordslaw] >The is no leading digit distribution explicitly specified for digit [{pos}] and therefore the Uniform distribution is used instead.')
-            self.leading_digits = [10.0] * 10  # Approximation, near-uniform distribution
+            # Approximation, near-uniform distribution
+            self.leading_digits = [10.0] * 10
             self.digit_range = range(0, 10)
         elif pos==0:
             raise Exception('[benfordslaw] >There is no leading digit distribution for the 0 digit!')
