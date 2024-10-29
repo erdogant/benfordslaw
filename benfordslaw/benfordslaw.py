@@ -226,14 +226,6 @@ class benfordslaw:
             * https://github.com/erdogant/datazets
 
         """
-        if data == 'elections_usa':
-            url = 'https://erdogant.github.io/datasets/USA_2016_elections.zip'
-            data = None
-        elif data == 'elections_rus':
-            url = 'https://erdogant.github.io/datasets/RUS_2018_elections.zip'
-            data = None
-        else:
-            if verbose >= 3: print('[benfordslaw] >[%s] does not exists. Try "elections_usa" or "elections_rus" <return>' %(data))
 
         return dz.get(data=data, url=url, sep=sep)
 

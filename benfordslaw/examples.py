@@ -21,7 +21,7 @@ from benfordslaw import benfordslaw
 
 bl = benfordslaw(pos=-2)
 # USA example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 
@@ -37,7 +37,7 @@ from benfordslaw import benfordslaw
 bl = benfordslaw(pos=2)
 
 # Load elections example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 
 # Extract election information.
 X = df['votes'].loc[df['candidate']=='Donald Trump'].values
@@ -75,7 +75,7 @@ from benfordslaw import benfordslaw
 
 bl = benfordslaw(pos=2)
 # USA example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 results = bl.fit(X)
@@ -101,7 +101,7 @@ from benfordslaw import benfordslaw
 bl = benfordslaw(pos=1)
 
 # USA example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 
 # Get data for candidate
 Iloc = df['candidate']=='Donald Trump'
@@ -117,7 +117,7 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 
 bl = benfordslaw(pos=-1)
 # USA example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 
@@ -129,7 +129,7 @@ bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.
 
 bl = benfordslaw(pos=-2)
 # USA example
-df = bl.import_example(data='USA')
+df = bl.import_example(data='elections_usa')
 Iloc = df['candidate']=='Donald Trump'
 X = df['votes'].loc[Iloc].values
 
@@ -147,7 +147,7 @@ for candidate in candidates:
     bl.plot(title=candidate)
 
 # %% USA
-df = bl.import_example('USA')
+df = bl.import_example('elections_usa')
 for candidate in df['candidate'].unique():
     Iloc = df['candidate']==candidate
     X = df['votes'].loc[Iloc].values
