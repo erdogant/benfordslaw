@@ -5,7 +5,8 @@
 from benfordslaw import benfordslaw
 
 # Initialize
-bl = benfordslaw(pos=1)
+pos=3
+bl = benfordslaw(pos=pos)
 
 # Load elections example
 df = bl.import_example(data='elections_usa')
@@ -17,7 +18,7 @@ X = df['votes'].loc[df['candidate']=='Donald Trump'].values
 results = bl.fit(X)
 
 # Plot
-bl.plot(title='Results of Donald Trump based on 2nd digit', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+bl.plot(title=f'Results of Donald Trump based on digit={pos}', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 
 # %% Issue #13
