@@ -65,7 +65,7 @@ class benfordslaw:
             # Approximation, near-uniform distribution
             self.leading_digits = [10.0] * 10
             self.digit_range = range(0, 10)
-        elif pos==0:
+        else:
             raise Exception('[benfordslaw] >There is no leading digit distribution for the 0 digit!')
 
     def fit(self, X):
