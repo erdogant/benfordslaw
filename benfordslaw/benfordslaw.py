@@ -144,7 +144,7 @@ class benfordslaw:
         return self.results
 
     # Plot
-    def plot(self, title='', fontsize=16, barcolor='black', barwidth=0.3, label='Empirical distribution', figsize=(15, 8)):
+    def plot(self, title='', fontsize=16, barcolor='black', barwidth=0.3, label='Empirical distribution', figsize=(15, 8), grid=True):
         """Make bar chart of observed vs expected 1st digit frequency in percent.
 
         Parameters
@@ -172,12 +172,13 @@ class benfordslaw:
         fig, ax = plt.subplots(figsize=figsize)
         # Plot Empirical percentages
         rects1 = ax.bar(x, data_percentage[:, 1], width=barwidth, color=barcolor, alpha=0.8, label=label)
+
         plt.plot(x, data_percentage[:, 1], color='black', linewidth=0.8)
         # ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
         # attach a text label above each bar displaying its height
         for rect in rects1:
             height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2, height, '{:0.1f}'.format(height), ha='center', va='bottom', fontsize=13)
+            ax.text(rect.get_x() + rect.get_width() / 2, height, '{:0.1f}%'.format(height), ha='center', va='bottom', fontsize=13)
 
         # Plot expected benfords values
         ax.scatter(x, self.leading_digits, s=150, c='red', zorder=2, label='Benfords distribution')
@@ -193,14 +194,19 @@ class benfordslaw:
         ax.set_title(title, fontsize=fontsize)
         ax.set_ylabel('Frequency (%)', fontsize=fontsize)
         ax.set_xlabel('Digits', fontsize=fontsize)
-        ax.set_xticks(x)
-        ax.set_xticklabels(x, fontsize=fontsize)
-        ax.grid(True)
-        ax.legend()
+        ax.set_xticks(x.astype(int))
+        ax.set_xticklabels(x.astype(int), fontsize=fontsize)
+
+        if grid:
+            ax.grid(True, which='both', linestyle='--', linewidth=0.9, alpha=0.8)  # Customize as needed
+
         # Hide the right and top spines & add legend
         ax.spines['right'].set_visible(False)
         ax.spines['top'].set_visible(False)
         ax.legend(prop={'size': 15}, frameon=False)
+        # Set legend
+        ax.legend()
+
         plt.show()
         return fig, ax
 
