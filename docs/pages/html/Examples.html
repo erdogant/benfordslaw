@@ -38,7 +38,7 @@
             benfordslaw
           </a>
               <div class="version">
-                1.2.2
+                1.3.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -66,7 +66,7 @@
 <li class="toctree-l1"><a class="reference internal" href="#third-digit-test">Third digit test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#last-digit-test">Last digit test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#second-last-digit-test">Second last digit test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#all-other-digits-4-9">All other digits [4-9]</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#all-other-digits-4-9-and-0">All other digits [4-9] and &lt; 0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
@@ -197,7 +197,9 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </section>
 <section id="last-digit-test">
 <h1>Last digit test<a class="headerlink" href="#last-digit-test" title="Link to this heading"></a></h1>
-<p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.</p>
+<p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.
+Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law.
+However, we ca assume a uniform distribution which is being done for every value &lt; 0.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
 <span class="c1"># Initialize</span>
@@ -226,7 +228,9 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </section>
 <section id="second-last-digit-test">
 <h1>Second last digit test<a class="headerlink" href="#second-last-digit-test" title="Link to this heading"></a></h1>
-<p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.</p>
+<p>Let’s check the the votes on the ** second last digit** and determine whether it significantly deviates from benfords distribution.
+Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law.
+However, we ca assume a uniform distribution which is being done for every value &lt; 0.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
 <span class="c1"># Initialize</span>
@@ -253,8 +257,8 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </tbody>
 </table>
 </section>
-<section id="all-other-digits-4-9">
-<h1>All other digits [4-9]<a class="headerlink" href="#all-other-digits-4-9" title="Link to this heading"></a></h1>
+<section id="all-other-digits-4-9-and-0">
+<h1>All other digits [4-9] and &lt; 0<a class="headerlink" href="#all-other-digits-4-9-and-0" title="Link to this heading"></a></h1>
 <p>Benford’s Law has known distributions for the the first three digits. All digits that come after (like pos=4), the distribution is not explicitly defined in classical Benford’s Law. The significance of Benford’s Law in data declines as you move to higher digit positions, since the influence of digit distributions decreases and approaches uniformity.
 Therefore, I assume a uniform distribution for every position &gt; 3 or position &lt; 3.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>

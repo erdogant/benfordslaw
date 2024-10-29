@@ -116,6 +116,8 @@ Last digit test
 ####################################
 
 Let's check the the votes on the **last digit** and determine whether it significantly deviates from benfords distribution.
+Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law.
+However, we ca assume a uniform distribution which is being done for every value < 0.
 
 .. code:: python
 
@@ -150,7 +152,9 @@ Let's check the the votes on the **last digit** and determine whether it signifi
 Second last digit test
 ####################################
 
-Let's check the the votes on the **last digit** and determine whether it significantly deviates from benfords distribution.
+Let's check the the votes on the ** second last digit** and determine whether it significantly deviates from benfords distribution.
+Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law.
+However, we ca assume a uniform distribution which is being done for every value < 0.
 
 .. code:: python
 
@@ -183,7 +187,7 @@ Let's check the the votes on the **last digit** and determine whether it signifi
 
 
 
-All other digits [4-9]
+All other digits [4-9] and < 0
 ####################################
 
 Benford's Law has known distributions for the the first three digits. All digits that come after (like pos=4), the distribution is not explicitly defined in classical Benford's Law. The significance of Benford's Law in data declines as you move to higher digit positions, since the influence of digit distributions decreases and approaches uniformity.
