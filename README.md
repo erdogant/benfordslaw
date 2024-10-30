@@ -95,6 +95,7 @@ On the [documentation pages](https://erdogant.github.io/benfordslaw/) you can fi
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
+* Hai Wang et al, [Last Digit Tendency: Lucky Numbers and Psychological Rounding in Mobile Transactions](https://www.sciencedirect.com/science/article/pii/S2667325823003503#fig0001)
 
 #### Citation
 Please cite in your publications if this is useful for your research (see citation).
