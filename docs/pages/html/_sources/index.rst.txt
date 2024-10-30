@@ -1,7 +1,17 @@
-benfordslaw
+Benfordslaw
 ===========
 
 |python| |pypi| |docs| |stars| |LOC| |downloads_month| |downloads_total| |license| |forks| |open issues| |project status| |colab| |DOI| |repo-size| |donate|
+
+
+.. |logo| image:: ../figs/logo.png
+
+.. table:: 
+   :align: center
+
+   +----------+
+   | |logo|   |
+   +----------+
 
 
 .. |figd| image:: ../figs/fig1.png
