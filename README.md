@@ -83,18 +83,6 @@ On the [documentation pages](https://erdogant.github.io/benfordslaw/) you can fi
 </p>
 
 
-# 
-
-* [Example: Analyze second last digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test)
-
-<p align="left">
-  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test">
-  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig_2nd_last_digit_votes.png" width="600" />
-  </a>
-</p>
-
-
-
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
