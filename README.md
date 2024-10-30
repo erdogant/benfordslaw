@@ -1,4 +1,7 @@
-# benfordslaw
+
+<p align="center">
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/logo.png" width="300" />
+</p>
 
 [![Python](https://img.shields.io/pypi/pyversions/benfordslaw)](https://img.shields.io/pypi/pyversions/benfordslaw)
 [![PyPI Version](https://img.shields.io/pypi/v/benfordslaw)](https://pypi.org/project/benfordslaw/)
