@@ -1,6 +1,6 @@
 
 <p align="center">
-  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/logo.png" width="300" />
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/logo.png" />
 </p>
 
 [![Python](https://img.shields.io/pypi/pyversions/benfordslaw)](https://img.shields.io/pypi/pyversions/benfordslaw)
