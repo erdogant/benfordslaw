@@ -1,4 +1,7 @@
-# benfordslaw
+
+<p align="center">
+  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/logo.png" width="300" />
+</p>
 
 [![Python](https://img.shields.io/pypi/pyversions/benfordslaw)](https://img.shields.io/pypi/pyversions/benfordslaw)
 [![PyPI Version](https://img.shields.io/pypi/v/benfordslaw)](https://pypi.org/project/benfordslaw/)
@@ -80,21 +83,10 @@ On the [documentation pages](https://erdogant.github.io/benfordslaw/) you can fi
 </p>
 
 
-# 
-
-* [Example: Analyze second last digit-distribution](https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test)
-
-<p align="left">
-  <a href="https://erdogant.github.io/benfordslaw/pages/html/Examples.html#second-last-digit-test">
-  <img src="https://github.com/erdogant/benfordslaw/blob/master/docs/figs/fig_2nd_last_digit_votes.png" width="600" />
-  </a>
-</p>
-
-
-
 #### References
 * https://en.wikipedia.org/wiki/Benford%27s_law
 * https://towardsdatascience.com/frawd-detection-using-benfords-law-python-code-9db8db474cf8
+* Hai Wang et al, [Last Digit Tendency: Lucky Numbers and Psychological Rounding in Mobile Transactions](https://www.sciencedirect.com/science/article/pii/S2667325823003503#fig0001)
 
 #### Citation
 Please cite in your publications if this is useful for your research (see citation).
