@@ -2,7 +2,7 @@ from benfordslaw.benfordslaw import benfordslaw
 
 __author__ = 'Erdogan Tasksen'
 __email__ = 'erdogant@gmail.com'
-__version__ = '2.0.0'
+__version__ = '2.0.1'
 
 # module level doc-string
 __doc__ = """
@@ -17,17 +17,17 @@ Example
 -------
 >>> # Import library
 >>> from benfordslaw import benfordslaw
->>> # 
+>>> #
 >>> # Initialize
 >>> bl = benfordslaw()
->>> # 
+>>> #
 >>> df = bl.import_example()
 >>> # Get data for one candidate
 >>> X = df['votes'].loc[df['candidate']=='Donald Trump'].values
->>> # 
+>>> #
 >>> # Fit
 >>> results = bl.fit(X)
->>> # 
+>>> #
 >>> # Figure
 >>> fig, ax = bl.plot()
 
