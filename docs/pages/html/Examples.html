@@ -38,7 +38,7 @@
             benfordslaw
           </a>
               <div class="version">
-                1.3.0
+                2.0.0
               </div>
 <div role="search">
   <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
@@ -64,9 +64,9 @@
 <li class="toctree-l1 current"><a class="current reference internal" href="#">First digit test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#second-digit-test">Second digit test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#third-digit-test">Third digit test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="#all-other-digits-4-9-and-last-digits">All other digits [4-9] and last digits</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#last-digit-test">Last digit test</a></li>
 <li class="toctree-l1"><a class="reference internal" href="#second-last-digit-test">Second last digit test</a></li>
-<li class="toctree-l1"><a class="reference internal" href="#all-other-digits-4-9-and-0">All other digits [4-9] and &lt; 0</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Documentation</span></p>
 <ul>
@@ -103,7 +103,10 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="first-digit-test">
+  <p>Let’s check the the number of votes on different digits and determine whether it significantly deviates from benfords distribution.
+Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law.
+However, we can assume a uniform distribution which is being done for every digit above 3 and for the last digits.</p>
+<section id="first-digit-test">
 <h1>First digit test<a class="headerlink" href="#first-digit-test" title="Link to this heading"></a></h1>
 <p>In the following example we load the 2016 elections data of the USA for various candidates.
 We will check whether the votes are fraudulent based on benfords distribution.</p>
@@ -130,7 +133,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id1">
-<caption><span class="caption-text">First digit.</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
+<caption><span class="caption-text">1st digit.</span><a class="headerlink" href="#id1" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig1" src="_images/fig1.png" /></p></td>
 </tr>
@@ -159,7 +162,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id2">
-<caption><span class="caption-text">Second digit.</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
+<caption><span class="caption-text">2nd digit.</span><a class="headerlink" href="#id2" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig2" src="_images/fig2nd_digit_votes.png" /></p></td>
 </tr>
@@ -188,79 +191,17 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 </pre></div>
 </div>
 <table class="docutils align-center" id="id3">
-<caption><span class="caption-text">Second digit.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
+<caption><span class="caption-text">3th digit.</span><a class="headerlink" href="#id3" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig6" src="_images/fig6.png" /></p></td>
 </tr>
 </tbody>
 </table>
 </section>
-<section id="last-digit-test">
-<h1>Last digit test<a class="headerlink" href="#last-digit-test" title="Link to this heading"></a></h1>
-<p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.
-Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law.
-However, we ca assume a uniform distribution which is being done for every value &lt; 0.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
-
-<span class="c1"># Initialize</span>
-<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
-
-<span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
-
-<span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># Make fit</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-1&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-</pre></div>
-</div>
-<table class="docutils align-center" id="id4">
-<caption><span class="caption-text">Last digit.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
-<tbody>
-<tr class="row-odd"><td><p><img alt="fig3" src="_images/fig_last_digit_votes.png" /></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="second-last-digit-test">
-<h1>Second last digit test<a class="headerlink" href="#second-last-digit-test" title="Link to this heading"></a></h1>
-<p>Let’s check the the votes on the ** second last digit** and determine whether it significantly deviates from benfords distribution.
-Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law.
-However, we ca assume a uniform distribution which is being done for every value &lt; 0.</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
-
-<span class="c1"># Initialize</span>
-<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
-
-<span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
-
-<span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
-
-<span class="c1"># Make fit</span>
-<span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
-
-<span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-2&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
-</pre></div>
-</div>
-<table class="docutils align-center" id="id5">
-<caption><span class="caption-text">Second last digit.</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
-<tbody>
-<tr class="row-odd"><td><p><img alt="fig4" src="_images/fig_2nd_last_digit_votes.png" /></p></td>
-</tr>
-</tbody>
-</table>
-</section>
-<section id="all-other-digits-4-9-and-0">
-<h1>All other digits [4-9] and &lt; 0<a class="headerlink" href="#all-other-digits-4-9-and-0" title="Link to this heading"></a></h1>
+<section id="all-other-digits-4-9-and-last-digits">
+<h1>All other digits [4-9] and last digits<a class="headerlink" href="#all-other-digits-4-9-and-last-digits" title="Link to this heading"></a></h1>
 <p>Benford’s Law has known distributions for the the first three digits. All digits that come after (like pos=4), the distribution is not explicitly defined in classical Benford’s Law. The significance of Benford’s Law in data declines as you move to higher digit positions, since the influence of digit distributions decreases and approaches uniformity.
-Therefore, I assume a uniform distribution for every position &gt; 3 or position &lt; 3.</p>
+However, we can assume a uniform distribution which is being done for every digit above 3.</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
 
 <span class="c1"># Initialize</span>
@@ -279,10 +220,69 @@ Therefore, I assume a uniform distribution for every position &gt; 3 or position
 <span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=4&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
-<table class="docutils align-center" id="id6">
-<caption><span class="caption-text">Fourth digit.</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<table class="docutils align-center" id="id4">
+<caption><span class="caption-text">Fourth digit.</span><a class="headerlink" href="#id4" title="Link to this table"></a></caption>
 <tbody>
 <tr class="row-odd"><td><p><img alt="fig5" src="_images/fig5.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="last-digit-test">
+<h1>Last digit test<a class="headerlink" href="#last-digit-test" title="Link to this heading"></a></h1>
+<p>Let’s check the the votes on the <strong>last digit</strong> and determine whether it significantly deviates from benfords distribution.
+Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law. However, we can assume a uniform distribution which is being done for every last digits.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="c1"># Load elections example</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract election information.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Make fit</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-1&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils align-center" id="id5">
+<caption><span class="caption-text">Last digit.</span><a class="headerlink" href="#id5" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p><img alt="fig3" src="_images/fig_last_digit_votes.png" /></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="second-last-digit-test">
+<h1>Second last digit test<a class="headerlink" href="#second-last-digit-test" title="Link to this heading"></a></h1>
+<p>Let’s check the the votes on the <strong>second last digit</strong> and determine whether it significantly deviates from benfords distribution. Benford’s Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford’s Law. However, we can assume a uniform distribution which is being done for every last digits.</p>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="kn">from</span> <span class="nn">benfordslaw</span> <span class="kn">import</span> <span class="n">benfordslaw</span>
+
+<span class="c1"># Initialize</span>
+<span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="c1"># Load elections example</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+
+<span class="c1"># Extract election information.</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+
+<span class="c1"># Make fit</span>
+<span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
+
+<span class="c1"># Plot</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-2&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+</pre></div>
+</div>
+<table class="docutils align-center" id="id6">
+<caption><span class="caption-text">Second last digit.</span><a class="headerlink" href="#id6" title="Link to this table"></a></caption>
+<tbody>
+<tr class="row-odd"><td><p><img alt="fig4" src="_images/fig_2nd_last_digit_votes.png" /></p></td>
 </tr>
 </tbody>
 </table>

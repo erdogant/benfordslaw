@@ -1,3 +1,8 @@
+Let's check the the number of votes on different digits and determine whether it significantly deviates from benfords distribution.
+Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law.
+However, we can assume a uniform distribution which is being done for every digit above 3 and for the last digits.
+
+
 First digit test
 ####################################
 
@@ -30,7 +35,7 @@ We will check whether the votes are fraudulent based on benfords distribution.
 
 .. |fig1| image:: ../figs/fig1.png
 
-.. table:: First digit.
+.. table:: 1st digit.
    :align: center
 
    +----------+
@@ -66,7 +71,7 @@ Let's check the the votes on the second digit and determine whether it significa
 
 .. |fig2| image:: ../figs/fig2nd_digit_votes.png
 
-.. table:: Second digit.
+.. table:: 2nd digit.
    :align: center
 
    +----------+
@@ -102,11 +107,49 @@ Let's check the the votes on the second digit and determine whether it significa
 
 .. |fig6| image:: ../figs/fig6.png
 
-.. table:: Second digit.
+.. table:: 3th digit.
    :align: center
 
    +----------+
    | |fig6|   |
+   +----------+
+
+
+
+All other digits [4-9] and last digits
+#######################################
+
+Benford's Law has known distributions for the the first three digits. All digits that come after (like pos=4), the distribution is not explicitly defined in classical Benford's Law. The significance of Benford's Law in data declines as you move to higher digit positions, since the influence of digit distributions decreases and approaches uniformity.
+However, we can assume a uniform distribution which is being done for every digit above 3.
+
+
+.. code:: python
+
+	from benfordslaw import benfordslaw
+
+	# Initialize
+	bl = benfordslaw(pos=4)
+
+	# Load elections example
+	df = bl.import_example(data='elections_usa')
+
+	# Extract election information.
+	X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+
+	# Make fit
+	results = bl.fit(X)
+
+	# Plot
+	bl.plot(title='Results of Donald Trump based on digit=4', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
+
+
+.. |fig5| image:: ../figs/fig5.png
+
+.. table:: Fourth digit.
+   :align: center
+
+   +----------+
+   | |fig5|   |
    +----------+
 
 
@@ -116,8 +159,7 @@ Last digit test
 ####################################
 
 Let's check the the votes on the **last digit** and determine whether it significantly deviates from benfords distribution.
-Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law.
-However, we ca assume a uniform distribution which is being done for every value < 0.
+Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law. However, we can assume a uniform distribution which is being done for every last digits.
 
 .. code:: python
 
@@ -152,9 +194,7 @@ However, we ca assume a uniform distribution which is being done for every value
 Second last digit test
 ####################################
 
-Let's check the the votes on the ** second last digit** and determine whether it significantly deviates from benfords distribution.
-Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law.
-However, we ca assume a uniform distribution which is being done for every value < 0.
+Let's check the the votes on the **second last digit** and determine whether it significantly deviates from benfords distribution. Benford's Law has known distributions for the the first three digits. For other digits there is no distribution explicitly defined in classical Benford's Law. However, we can assume a uniform distribution which is being done for every last digits.
 
 .. code:: python
 
@@ -187,41 +227,6 @@ However, we ca assume a uniform distribution which is being done for every value
 
 
 
-All other digits [4-9] and < 0
-####################################
-
-Benford's Law has known distributions for the the first three digits. All digits that come after (like pos=4), the distribution is not explicitly defined in classical Benford's Law. The significance of Benford's Law in data declines as you move to higher digit positions, since the influence of digit distributions decreases and approaches uniformity.
-Therefore, I assume a uniform distribution for every position > 3 or position < 3.
-
-
-.. code:: python
-
-	from benfordslaw import benfordslaw
-
-	# Initialize
-	bl = benfordslaw(pos=4)
-
-	# Load elections example
-	df = bl.import_example(data='elections_usa')
-
-	# Extract election information.
-	X = df['votes'].loc[df['candidate']=='Donald Trump'].values
-
-	# Make fit
-	results = bl.fit(X)
-
-	# Plot
-	bl.plot(title='Results of Donald Trump based on digit=4', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
-
-
-.. |fig5| image:: ../figs/fig5.png
-
-.. table:: Fourth digit.
-   :align: center
-
-   +----------+
-   | |fig5|   |
-   +----------+
 
 
 .. include:: add_bottom.add
