@@ -120,23 +120,27 @@ class benfordslaw:
         counts_exp = self._get_expected_counts(total_count)
 
         # Compute Pvalues
-        if self.method=='chi2':
-            try:
-                tstats, Praw = chisquare(counts_emp, f_exp=counts_exp)
-            except:
-                raise Exception('The relative tolerance of the chisquare test is not reached. Try using another method such as "method=ks". This is not a bug but a feature: "https://github.com/scipy/scipy/issues/13362" ')
-        elif self.method=='ks':
-            tstats, Praw = ks_2samp(counts_emp, counts_exp)
-        else:
-            stats1, Praw1 = chisquare(counts_emp, f_exp=counts_exp)
-            tstats2, Praw2 = ks_2samp(counts_emp, counts_exp)
-            tstats, Praw = combine_pvalues([Praw1, Praw2], method='fisher')
-            self.method = 'P_ensemble'
+        tstats, Praw = np.nan, np.nan
+        if total_count > 0:
+            if self.method=='chi2':
+                try:
+                    tstats, Praw = chisquare(counts_emp, f_exp=counts_exp)
+                except:
+                    raise Exception('The relative tolerance of the chisquare test is not reached. Try using another method such as "method=ks". This is not a bug but a feature: "https://github.com/scipy/scipy/issues/13362" ')
+            elif self.method=='ks':
+                tstats, Praw = ks_2samp(counts_emp, counts_exp)
+            else:
+                stats1, Praw1 = chisquare(counts_emp, f_exp=counts_exp)
+                tstats2, Praw2 = ks_2samp(counts_emp, counts_exp)
+                tstats, Praw = combine_pvalues([Praw1, Praw2], method='fisher')
+                self.method = 'P_ensemble'
 
         # Show message
-        if (Praw<=self.alpha) and (self.verbose>=3):
+        if np.isnan(Praw) and (self.verbose>=3):
+            print(f"[benfordslaw] >No data available for this position.")
+        elif (Praw<=self.alpha) and (self.verbose>=3):
             print("[benfordslaw] >[%s] Anomaly detected! P=%g, Tstat=%g" %(self.method, Praw, tstats))
-        elif self.verbose>=3:
+        elif (Praw>self.alpha) and self.verbose>=3:
             print("[benfordslaw] >[%s] No anomaly detected. P=%g, Tstat=%g" %(self.method, Praw, tstats))
 
         # Store
@@ -182,9 +186,10 @@ class benfordslaw:
         plt.plot(x, data_percentage[:, 1], color='black', linewidth=0.8)
         # ax.scatter(x, data_percentage, s=150, c='red', zorder=2)
         # attach a text label above each bar displaying its height
-        for rect in rects1:
-            height = rect.get_height()
-            ax.text(rect.get_x() + rect.get_width() / 2, height, '{:0.1f}%'.format(height), ha='center', va='bottom', fontsize=13)
+        for rect, perc in zip(rects1, data_percentage[:, 1]):
+            if not np.isnan(perc):
+                height = rect.get_height()
+                ax.text(rect.get_x() + rect.get_width() / 2, height, '{:0.1f}%'.format(height), ha='center', va='bottom', fontsize=13)
 
         # Plot expected benfords values
         ax.scatter(x, self.leading_digits, s=150, c='red', zorder=2, label='Benfords distribution')
@@ -243,7 +248,7 @@ class benfordslaw:
 
         """
 
-        return dz.get(data=data, url=url, sep=sep)
+        return dz.get(data=data, url=url, sep=sep, verbose=verbose)
 
     # Compute expected counts
     def _get_expected_counts(self, total_count):
@@ -307,8 +312,10 @@ def _count_digit(data, d, digit_range):
 
     # Total amount
     total_count = sum(empirical_counts)
+    empirical_percentage = [np.nan] * len(empirical_counts)
     # Make percentage
-    empirical_percentage = [(i / total_count) * 100 for i in empirical_counts]
+    if total_count>0:
+        empirical_percentage = [(i / total_count) * 100 for i in empirical_counts]
     # Return
     return empirical_counts, empirical_percentage, total_count, digitnr
 
