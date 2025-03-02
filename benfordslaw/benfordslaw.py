@@ -1,16 +1,13 @@
-"""benfordslaw is a python library to test the frequency distribution of leading digits."""
+"""benfordslaw is a python library to test the frequency distribution of leading digits.
 
-# --------------------------------------------------
-# Name        : benfordslaw.py
-# Author      : E.Taskesen
-# Contact     : erdogant@gmail.com
-# github      : github.com/erdogant/benfordslaw.py
-# Licence     : MIT
-# --------------------------------------------------
+ Name        : benfordslaw.py
+ Author      : E.Taskesen
+ Contact     : erdogant@gmail.com
+ github      : github.com/erdogant/benfordslaw.py
+ Licence     : MIT
 
-
-# Libraries
-import os
+"""
+import datazets as dz
 import numpy as np
 import pandas as pd
 from scipy.stats import chisquare
@@ -18,8 +15,6 @@ from scipy.stats import ks_2samp
 from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
 import math
-import datazets as dz
-
 
 # %% Class
 class benfordslaw:
