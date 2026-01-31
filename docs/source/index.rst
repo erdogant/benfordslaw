@@ -64,6 +64,12 @@ Contents
 
   Tutorials
 
+.. toctree::
+  :maxdepth: 1
+  :caption: Methods
+
+  Methods
+
 
 .. toctree::
   :maxdepth: 1

@@ -23,7 +23,7 @@ logger = logging.getLogger(__name__)
 class benfordslaw:
     """Class benfordslaw."""
 
-    def __init__(self, alpha: float = 0.05, method: str = 'chi2', pos: int = 1, verbose: [str, int] = 'info',):
+    def __init__(self, alpha: float = 0.05, method: str = 'chi2', pos: (int, str) = 1, verbose: [str, int] = 'info',):
         """Initialize benfordslaw with user-defined parameters.
 
         Constants for Excess MAD calculation.
@@ -128,8 +128,26 @@ class benfordslaw:
         >>> # Import library
         >>> from benfordslaw import benfordslaw
         >>> #
+        >>> # Initialize with chi2 method
+        >>> bl = benfordslaw(method='chi2')
+        >>> #
+        >>> # Get data for one candidate
+        >>> df = bl.import_example(data='elections_usa')
+        >>> X = df['votes'].loc[df['candidate']=='Donald Trump'].values
+        >>> #
+        >>> # Fit
+        >>> results = bl.fit(X)
+        >>> #
+        >>> # Figure
+        >>> fig, ax = bl.plot()
+
+        Examples
+        --------
+        >>> # Import library
+        >>> from benfordslaw import benfordslaw
+        >>> #
         >>> # Initialize with MAD method
-        >>> bl = benfordslaw(pos='first_two', method='mad')
+        >>> bl = benfordslaw(pos=1, method='mad')
         >>> #
         >>> # Get data for one candidate
         >>> df = bl.import_example()
@@ -143,10 +161,12 @@ class benfordslaw:
         >>> #
         >>> # Figure
         >>> fig, ax = bl.plot()
-
+        
         Returns
         -------
-        dict containing:
+        dict
+            Dictionary containing the following keys:
+            
             P : float
                 P-value from the statistical test (NaN for MAD method).
             t : float
@@ -167,6 +187,7 @@ class benfordslaw:
                 'acceptable conformity', 'marginally acceptable conformity', or 'nonconforming').
             N : int
                 Number of observations used in the analysis.
+
 
         References
         ----------

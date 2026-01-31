@@ -30,7 +30,7 @@ from benfordslaw import benfordslaw
 
 # Initialize
 pos=-4
-bl = benfordslaw(pos=pos)
+bl = benfordslaw(pos=pos, method='chi2')
 
 # Load elections example
 df = bl.import_example(data='elections_usa')
