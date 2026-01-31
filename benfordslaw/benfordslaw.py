@@ -15,28 +15,21 @@ from scipy.stats import ks_2samp
 from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
 import math
+import logging
 
-
-# %% Constants for Excess MAD calculation
-# These constants are derived from the variance of the binomial distribution for each digit test.
-# For the first-two-digits test, C = 158.8 as derived in Barney & Schulzke (2016).
-# For other tests, constants are computed using the formula:
-# C = K^2 * π / (2 * (Σ sqrt(p_k * (1 - p_k)))^2)
-# where K is the number of digit categories and p_k are the Benford probabilities.
-EXCESS_MAD_CONSTANTS = {
-    'first_two': 158.8,  # First-two-digits test (90 categories, k=10..99)
-    1: 21.27,            # First digit test (9 categories, k=1..9)
-    2: 30.30,            # Second digit test (10 categories, k=0..9)
-    3: 31.83,            # Third digit test (10 categories, approximately uniform)
-}
-
+logger = logging.getLogger(__name__)
 
 # %% Class
 class benfordslaw:
     """Class benfordslaw."""
 
-    def __init__(self, alpha=0.05, method='chi2', pos=1, verbose=3):
+    def __init__(self, alpha: float = 0.05, method: str = 'chi2', pos: int = 1, verbose: [str, int] = 'info',):
         """Initialize benfordslaw with user-defined parameters.
+
+        Constants for Excess MAD calculation.
+        The constants are derived from the variance of the binomial distribution for each digit test.
+        For the first-two-digits test, C = 158.8 as derived in Barney & Schulzke (2016).
+        For other tests, constants are computed using the formula: C = K^2 * π / (2 * (Σ sqrt(p_k * (1 - p_k)))^2), where K is the number of digit categories and p_k are the Benford probabilities.
 
         Parameters
         ----------
@@ -58,8 +51,13 @@ class benfordslaw:
             * -2: second last digit (etc.)
             * 'first_two': First two digits combined (recommended for Benford's Law analysis,
               provides higher resolution with 90 categories instead of 9)
-        verbose : int, optional
-            Print message to screen. The default is 3.
+        verbose : str or int, optional, default='info' (20)
+            Logging verbosity level. Possible values:
+            - 0, 60, None, 'silent', 'off', 'no' : no messages.
+            - 10, 'debug' : debug level and above.
+            - 20, 'info' : info level and above.
+            - 30, 'warning' : warning level and above.
+            - 50, 'critical' : critical level and above.
 
         References
         ----------
@@ -67,10 +65,19 @@ class benfordslaw:
           in Benford's Law Research and Practice. Journal of Forensic Accounting Research, 1(1), A66-A90.
 
         """
+        # Set the logger
+        verbose = set_logger(verbose=verbose)
+
         if (alpha is None): alpha = 1
         self.alpha = alpha
         self.method = method
         self.pos = pos
+        self.EXCESS_MAD_CONSTANTS = {
+            'first_two': 158.8,  # First-two-digits test (90 categories, k=10..99)
+            1: 21.27,            # First digit test (9 categories, k=1..9)
+            2: 30.30,            # Second digit test (10 categories, k=0..9)
+            3: 31.83,            # Third digit test (10 categories, approximately uniform)
+        }
         self.verbose = verbose
 
         # Benford's Law percentage-distribution for leading digits
@@ -89,9 +96,10 @@ class benfordslaw:
             self.leading_digits = [10.2, 10.1, 10.1, 10.1, 10.0, 10.0, 9.9, 9.9, 9.9, 9.8]
             self.digit_range = range(0, 10)
         elif pos == 0:
-            raise Exception('[benfordslaw] >There is no leading digit distribution for the 0 digit!')
+            logger.error("There is no leading digit distribution for the 0 digit!")
+            raise ValueError("There is no leading digit distribution for the 0 digit!")
         elif isinstance(pos, int) and (pos > 3 or pos < 0):
-            if verbose >= 3: print(f'[benfordslaw] >The is no leading digit distribution explicitly specified for digit [{pos}] and therefore the Uniform distribution is used instead.')
+            logger.info(f'[benfordslaw] >The is no leading digit distribution explicitly specified for digit [{pos}] and therefore the Uniform distribution is used instead.')
             # Approximation, near-uniform distribution
             self.leading_digits = [10.0] * 10
             self.digit_range = range(0, 10)
@@ -120,7 +128,7 @@ class benfordslaw:
         >>> # Import library
         >>> from benfordslaw import benfordslaw
         >>> #
-        >>> # Initialize with MAD method (recommended for fraud detection)
+        >>> # Initialize with MAD method
         >>> bl = benfordslaw(pos='first_two', method='mad')
         >>> #
         >>> # Get data for one candidate
@@ -154,7 +162,7 @@ class benfordslaw:
             excess_mad : float
                 Excess MAD = MAD - E(MAD). Negative values indicate conformity,
                 positive values indicate deviation from Benford's Law.
-            conformity : str
+            conformity_mad : str
                 Conformity assessment based on MAD thresholds ('close conformity',
                 'acceptable conformity', 'marginally acceptable conformity', or 'nonconforming').
             N : int
@@ -169,7 +177,8 @@ class benfordslaw:
 
         """
         # Make distribution first digits
-        if self.verbose >= 3: print("[benfordslaw] >Analyzing digit position: [%s]" % (self.pos))
+        logger.info(f"Analyzing digit position: {self.pos}")
+        self.results = {}
         # Convert pandas dataframe to numpy array
         if isinstance(X, pd.DataFrame): X = X.values.ravel()
         # Count digit based on position type
@@ -206,30 +215,30 @@ class benfordslaw:
 
         # Show message
         if self.method == 'mad':
-            if self.verbose >= 3:
-                if excess_mad <= 0:
-                    print("[benfordslaw] >[mad] No anomaly detected. Excess MAD=%g (%s)" % (excess_mad, conformity))
-                else:
-                    print("[benfordslaw] >[mad] Potential anomaly. Excess MAD=%g (%s)" % (excess_mad, conformity))
-        elif np.isnan(Praw) and (self.verbose >= 3):
-            print(f"[benfordslaw] >No data available for this position.")
-        elif (Praw <= self.alpha) and (self.verbose >= 3):
-            print("[benfordslaw] >[%s] Anomaly detected! P=%g, Tstat=%g" % (self.method, Praw, tstats))
-        elif (Praw > self.alpha) and self.verbose >= 3:
-            print("[benfordslaw] >[%s] No anomaly detected. P=%g, Tstat=%g" % (self.method, Praw, tstats))
-
+            logger.info(f"[{self.method}] {'No anomaly detected' if excess_mad <= 0 else 'Potential anomaly'}. Excess MAD={excess_mad} ({conformity})")
+        elif np.isnan(Praw):
+            logger.info("No data available for this position.")
+        elif (Praw <= self.alpha):
+            logger.info(f"[{self.method}] Anomaly detected! P={Praw}, Tstat={tstats}")
+        elif (Praw > self.alpha):
+            logger.info(f"[{self.method}] No anomaly detected. P={Praw}, Tstat={tstats}")
+        
+        # Set bool based on selected method
+        if self.method == 'mad':
+            self.results['P_significant'] = excess_mad > 0
+        else:
+            self.results['P_significant'] = Praw <= self.alpha
+            
         # Store
-        self.results = {}
+        self.results['N'] = int(total_count)
         self.results['P'] = Praw
         self.results['t'] = tstats
-        self.results['P_significant'] = Praw <= self.alpha if not np.isnan(Praw) else (excess_mad > 0)
         self.results['percentage_emp'] = np.c_[digit, percentage_emp]
         # Always include MAD statistics
         self.results['mad'] = mad
         self.results['expected_mad'] = expected_mad
         self.results['excess_mad'] = excess_mad
-        self.results['conformity'] = conformity
-        self.results['N'] = int(total_count)
+        self.results['conformity_mad'] = conformity
 
         # return
         return self.results
@@ -339,9 +348,9 @@ class benfordslaw:
 
         """
         if self.pos == 'first_two':
-            return EXCESS_MAD_CONSTANTS['first_two']
-        elif self.pos in EXCESS_MAD_CONSTANTS:
-            return EXCESS_MAD_CONSTANTS[self.pos]
+            return self.EXCESS_MAD_CONSTANTS['first_two']
+        elif self.pos in self.EXCESS_MAD_CONSTANTS:
+            return self.EXCESS_MAD_CONSTANTS[self.pos]
         else:
             # For other positions, use an approximation based on the distribution
             # C ≈ K² × π / 2 for approximately uniform distributions
@@ -392,7 +401,7 @@ class benfordslaw:
 
         # Build title based on method
         if self.method == 'mad':
-            title = title + "\nExcess MAD=%g (%s)" % (self.results['excess_mad'], self.results['conformity'])
+            title = title + "\nExcess MAD=%g (%s)" % (self.results['excess_mad'], self.results['conformity_mad'])
         elif not np.isnan(self.results['P']) and self.results['P'] <= self.alpha:
             title = title + "\nAnomaly detected! P=%g, Tstat=%g" % (self.results['P'], self.results['t'])
         elif not np.isnan(self.results['P']):
@@ -429,7 +438,7 @@ class benfordslaw:
         plt.show()
         return fig, ax
 
-    def import_example(self, data='elections', url=None, sep=',', verbose=3):
+    def import_example(self, data='elections', url=None, sep=',', verbose='info'):
         """Import example dataset from github source.
 
         Import one of the few datasets from github source or specify your own download url link.
@@ -622,17 +631,77 @@ def compute_excess_mad(data, pos='first_two'):
       in Benford's Law Research and Practice. Journal of Forensic Accounting Research, 1(1), A66-A90.
 
     """
-    bl = benfordslaw(pos=pos, method='mad', verbose=0)
+    bl = benfordslaw(pos=pos, method='mad', verbose='info')
     results = bl.fit(np.asarray(data))
     return {
         'mad': results['mad'],
         'expected_mad': results['expected_mad'],
         'excess_mad': results['excess_mad'],
-        'conformity': results['conformity'],
+        'conformity_mad': results['conformity_mad'],
         'N': results['N']
     }
 
 
+
+# %%
+def set_logger(verbose: [str, int] = 'info', return_status: bool = False):
+    """Set the logger for verbosity messages.
+
+    Parameters
+    ----------
+    verbose : [str, int], default is 'info' or 20
+        Set the verbose messages using string or integer values.
+            * 0, 60, None, 'silent', 'off', 'no']: No message.
+            * 10, 'debug': Messages from debug level and higher.
+            * 20, 'info': Messages from info level and higher.
+            * 30, 'warning': Messages from warning level and higher.
+            * 50, 'critical': Messages from critical level and higher.
+
+    Returns
+    -------
+    None.
+
+    Examples
+    --------
+    >>> # Set the logger to warning
+    >>> set_logger(verbose='warning')
+    >>>
+    >>> # Test with different messages
+    >>> logger.debug("Hello debug")
+    >>> logger.info("Hello info")
+    >>> logger.warning("Hello warning")
+    >>> logger.critical("Hello critical")
+    >>>
+    """
+    # Set 0 and None as no messages.
+    if (verbose==0) or (verbose is None):
+        verbose=60
+    # Convert str to levels
+    if isinstance(verbose, str):
+        levels = {
+            'silent': logging.CRITICAL + 10,
+            'off': logging.CRITICAL + 10,
+            'no': logging.CRITICAL + 10,
+            'debug': logging.DEBUG,
+            'info': logging.INFO,
+            'warning': logging.WARNING,
+            'error': logging.ERROR,
+            'critical': logging.CRITICAL,
+        }
+        verbose = levels[verbose]
+
+    # Show examples
+    logger.setLevel(verbose)
+    if return_status:
+        return verbose
+
+
+# %%
+def get_logger():
+    return logger.getEffectiveLevel()
+
+
 # %% Main
 if __name__ == "__main__":
-    print('[benfordslaw] >Please bootup python and run benfordslaw as described in the readme file: https://github.com/erdogant/benfordslaw')
+    logger.info(f'Please bootup python and run benfordslaw as described in the readme file: https://github.com/erdogant/benfordslaw')
+

@@ -9,12 +9,17 @@ authors = [{ name = "Erdogan Taskesen", email = "erdogant@gmail.com" },]
 description = "benfordslaw is a python library to test the frequency distribution of leading digits."
 readme = "README.md"
 requires-python = ">=3"
-license = { file = "LICENSE" }
-keywords = ["Python", ""]
+license = "MIT"
+keywords = ["Python", "benfordslaw", "statistical analysis", "Fraud detection", "data validation"]
 classifiers = [
     "Programming Language :: Python :: 3",
-    "License :: OSI Approved :: MIT License",
+    "Intended Audience :: Education",
+    "Intended Audience :: Science/Research",
+    "Operating System :: Unix",
+    "Operating System :: Microsoft :: Windows",
+    "Operating System :: MacOS",
     "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
 ]
 dependencies = ['matplotlib','numpy','scipy','pandas', 'datazets>=0.2.0']
 

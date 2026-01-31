@@ -1,10 +1,21 @@
 from benfordslaw.benfordslaw import benfordslaw
 from benfordslaw.benfordslaw import compute_excess_mad
-from benfordslaw.benfordslaw import EXCESS_MAD_CONSTANTS
+import logging
 
 __author__ = 'Erdogan Tasksen'
 __email__ = 'erdogant@gmail.com'
-__version__ = '2.0.2'
+__version__ = '2.1.0'
+
+# Setup root logger
+_logger = logging.getLogger('benfordslaw')
+_log_handler = logging.StreamHandler()
+_fmt = '[{asctime}] [{name}] [{levelname}] {message}'
+_formatter = logging.Formatter(fmt=_fmt, style='{', datefmt='%d-%m-%Y %H:%M:%S')
+_log_handler.setFormatter(_formatter)
+_log_handler.setLevel(logging.DEBUG)
+_logger.addHandler(_log_handler)
+_logger.propagate = False
+
 
 # module level doc-string
 __doc__ = """
@@ -15,7 +26,7 @@ Test if an empirical (observed) distribution differs significantly from a theore
 The law states that in many naturally occurring collections of numbers, the leading significant digit is likely to be small.
 This method can be used if you want to test whether your set of numbers may be artificial (or manipulated).
 
-New in version 2.0.2:
+New in version 2.1.0:
 - Added Excess MAD (Mean Absolute Deviation) statistic for more reliable fraud detection
 - Added first-two-digits test (pos='first_two') for higher resolution analysis
 - Added 'mad' method option for MAD-based conformity assessment
@@ -25,7 +36,7 @@ Example
 >>> # Import library
 >>> from benfordslaw import benfordslaw
 >>> #
->>> # Initialize with MAD method (recommended for fraud detection)
+>>> # Initialize with MAD method
 >>> bl = benfordslaw(pos='first_two', method='mad')
 >>> #
 >>> df = bl.import_example()
@@ -37,7 +48,7 @@ Example
 >>> #
 >>> # Access Excess MAD results
 >>> print(f"Excess MAD: {results['excess_mad']}")
->>> print(f"Conformity: {results['conformity']}")
+>>> print(f"Conformity: {results['conformity_mad']}")
 >>> #
 >>> # Figure
 >>> fig, ax = bl.plot()
@@ -45,7 +56,7 @@ Example
 Quick Excess MAD Computation
 ----------------------------
 >>> from benfordslaw import compute_excess_mad
->>> result = compute_excess_mad(data, pos='first_two')
+>>> result = compute_excess_mad(X, pos='first_two')
 >>> print(f"Excess MAD: {result['excess_mad']}")
 
 References

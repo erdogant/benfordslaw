@@ -4,7 +4,6 @@
 import numpy as np
 from benfordslaw import benfordslaw
 from benfordslaw import compute_excess_mad
-from benfordslaw import EXCESS_MAD_CONSTANTS
 import unittest
 
 
@@ -14,8 +13,8 @@ class TestBENFORDSLAW(unittest.TestCase):
         total_results = []
         pos = [-9, -8, -7, -6, -5, -4, -3, -2 -1, 1, 2, 3, 4, 5, 6, 7, 8, 9]
         for p, t in zip(pos, gt):
-            bl = benfordslaw(pos=p, verbose=0)
-            df = bl.import_example(data='elections_usa', verbose=0)
+            bl = benfordslaw(pos=p)
+            df = bl.import_example(data='elections_usa')
             Iloc = df['candidate']=='Donald Trump'
             X = df['votes'].loc[Iloc].values
             results = bl.fit(X)
@@ -38,7 +37,7 @@ class TestBENFORDSLAW(unittest.TestCase):
         for method in methods:
             bl = benfordslaw(method=method)
             out = bl.fit(X)
-            assert np.all(np.isin([*out.keys()], ['P', 't', 'percentage_emp', 'P_significant', 'mad', 'expected_mad', 'excess_mad', 'conformity', 'N']))
+            assert np.all(np.isin([*out.keys()], ['P', 't', 'percentage_emp', 'P_significant', 'mad', 'expected_mad', 'excess_mad', 'conformity_mad', 'N']))
 
         # TEST 2: check chi2
         bl = benfordslaw(method='chi2')
@@ -62,7 +61,7 @@ class TestBENFORDSLAW(unittest.TestCase):
         Iloc = df['candidate']=='Donald Trump'
         X = df['votes'].loc[Iloc]
         results = bl.fit(X)
-        np.all(np.isin([*results.keys()], ['P', 't', 'percentage_emp', 'P_significant', 'mad', 'expected_mad', 'excess_mad', 'conformity', 'N']))
+        np.all(np.isin([*results.keys()], ['P', 't', 'percentage_emp', 'P_significant', 'mad', 'expected_mad', 'excess_mad', 'conformity_mad', 'N']))
         assert np.all(results['percentage_emp'][:,1]==[31.64521544487969, 16.508114157806382, 12.479015109121432, 9.820928931169558, 7.862339115836598, 6.3794068270845, 5.8477895914941245, 4.616675993284835, 4.8405148293228875])
 
 
@@ -71,8 +70,8 @@ class TestExcessMAD(unittest.TestCase):
 
     def test_mad_method_first_digit(self):
         """Test MAD method with first digit analysis."""
-        bl = benfordslaw(method='mad', pos=1, verbose=0)
-        df = bl.import_example(data='elections_usa', verbose=0)
+        bl = benfordslaw(method='mad', pos=1)
+        df = bl.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
         results = bl.fit(X)
 
@@ -80,7 +79,7 @@ class TestExcessMAD(unittest.TestCase):
         assert 'mad' in results
         assert 'expected_mad' in results
         assert 'excess_mad' in results
-        assert 'conformity' in results
+        assert 'conformity_mad' in results
         assert 'N' in results
 
         # MAD should be non-negative
@@ -94,8 +93,8 @@ class TestExcessMAD(unittest.TestCase):
 
     def test_mad_method_first_two_digits(self):
         """Test MAD method with first-two-digits analysis (paper's recommended approach)."""
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
-        df = bl.import_example(data='elections_usa', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
+        df = bl.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
         results = bl.fit(X)
 
@@ -103,17 +102,17 @@ class TestExcessMAD(unittest.TestCase):
         assert 'mad' in results
         assert 'expected_mad' in results
         assert 'excess_mad' in results
-        assert 'conformity' in results
+        assert 'conformity_mad' in results
 
         # For first-two-digits test, conformity should be one of the defined categories
         valid_conformities = ['close conformity', 'acceptable conformity',
                               'marginally acceptable conformity', 'nonconforming', 'insufficient data']
-        assert results['conformity'] in valid_conformities
+        assert results['conformity_mad'] in valid_conformities
 
     def test_excess_mad_formula(self):
         """Test that Excess MAD = MAD - E(MAD)."""
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
-        df = bl.import_example(data='elections_usa', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
+        df = bl.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
         results = bl.fit(X)
 
@@ -124,13 +123,13 @@ class TestExcessMAD(unittest.TestCase):
     def test_expected_mad_formula(self):
         """Test that E(MAD) ≈ 1/√(C×N) for first-two-digits."""
         import math
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
-        df = bl.import_example(data='elections_usa', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
+        df = bl.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
         results = bl.fit(X)
 
         # Calculate expected MAD using the formula from the paper
-        C = EXCESS_MAD_CONSTANTS['first_two']  # 158.8
+        C = bl.EXCESS_MAD_CONSTANTS['first_two']  # 158.8
         N = results['N']
         expected_mad_calculated = 1.0 / math.sqrt(C * N)
 
@@ -140,12 +139,13 @@ class TestExcessMAD(unittest.TestCase):
     def test_excess_mad_constants(self):
         """Test that Excess MAD constants are defined correctly."""
         # Check that constants exist for key digit tests
-        assert 'first_two' in EXCESS_MAD_CONSTANTS
-        assert 1 in EXCESS_MAD_CONSTANTS
-        assert 2 in EXCESS_MAD_CONSTANTS
+        bl = benfordslaw()
+        assert 'first_two' in bl.EXCESS_MAD_CONSTANTS
+        assert 1 in bl.EXCESS_MAD_CONSTANTS
+        assert 2 in bl.EXCESS_MAD_CONSTANTS
 
         # The constant for first-two-digits should be 158.8 (from the paper)
-        assert EXCESS_MAD_CONSTANTS['first_two'] == 158.8
+        assert bl.EXCESS_MAD_CONSTANTS['first_two'] == 158.8
 
     def test_compute_excess_mad_function(self):
         """Test the standalone compute_excess_mad function."""
@@ -157,7 +157,7 @@ class TestExcessMAD(unittest.TestCase):
         assert 'mad' in result
         assert 'expected_mad' in result
         assert 'excess_mad' in result
-        assert 'conformity' in result
+        assert 'conformity_mad' in result
         assert 'N' in result
 
         # Verify the formula
@@ -165,7 +165,7 @@ class TestExcessMAD(unittest.TestCase):
 
     def test_first_two_digits_90_categories(self):
         """Test that first-two-digits has 90 categories (10-99)."""
-        bl = benfordslaw(pos='first_two', verbose=0)
+        bl = benfordslaw(pos='first_two')
 
         # Check that digit_range covers 10-99
         assert len(bl.digit_range) == 90
@@ -177,7 +177,7 @@ class TestExcessMAD(unittest.TestCase):
 
     def test_conformity_thresholds_first_two(self):
         """Test conformity thresholds for first-two-digits test."""
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
 
         # Create a known dataset that should conform well to Benford's Law
         # Using lognormal distribution which typically follows Benford's Law
@@ -188,25 +188,25 @@ class TestExcessMAD(unittest.TestCase):
 
         # Lognormal data should generally show good conformity
         # (though this is a probabilistic test)
-        assert results['conformity'] in ['close conformity', 'acceptable conformity',
+        assert results['conformity_mad'] in ['close conformity', 'acceptable conformity',
                                           'marginally acceptable conformity', 'nonconforming']
 
     def test_mad_statistics_always_computed(self):
         """Test that MAD statistics are always computed regardless of method."""
         methods = ['chi2', 'ks', 'mad', None]
-        bl_base = benfordslaw(verbose=0)
-        df = bl_base.import_example(data='elections_usa', verbose=0)
+        bl_base = benfordslaw()
+        df = bl_base.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
 
         for method in methods:
-            bl = benfordslaw(method=method, verbose=0)
+            bl = benfordslaw(method=method)
             results = bl.fit(X)
 
             # MAD statistics should always be present
             assert 'mad' in results, f"MAD missing for method {method}"
             assert 'expected_mad' in results, f"expected_mad missing for method {method}"
             assert 'excess_mad' in results, f"excess_mad missing for method {method}"
-            assert 'conformity' in results, f"conformity missing for method {method}"
+            assert 'conformity_mad' in results, f"conformity missing for method {method}"
 
     def test_excess_mad_sample_size_effect(self):
         """Test that Excess MAD properly accounts for sample size."""
@@ -217,7 +217,7 @@ class TestExcessMAD(unittest.TestCase):
         large_data = np.random.lognormal(mean=5, sigma=2, size=10000) * 100
         small_data = large_data[:500]
 
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
 
         results_large = bl.fit(large_data)
         results_small = bl.fit(small_data)
@@ -233,7 +233,7 @@ class TestExcessMAD(unittest.TestCase):
 
     def test_negative_excess_mad_indicates_conformity(self):
         """Test that negative Excess MAD indicates good conformity."""
-        bl = benfordslaw(method='mad', pos='first_two', verbose=0)
+        bl = benfordslaw(method='mad', pos='first_two')
 
         # Generate data that follows Benford's Law well
         np.random.seed(123)
@@ -245,18 +245,18 @@ class TestExcessMAD(unittest.TestCase):
         # If Excess MAD is negative, conformity should indicate good fit
         # (though this is probabilistic and depends on the data)
         if results['excess_mad'] < 0:
-            assert results['conformity'] in ['close conformity', 'acceptable conformity']
+            assert results['conformity_mad'] in ['close conformity', 'acceptable conformity']
 
     def test_different_digit_positions(self):
         """Test MAD calculation for different digit positions."""
         positions = [1, 2, 3, 'first_two']
 
-        bl_base = benfordslaw(verbose=0)
-        df = bl_base.import_example(data='elections_usa', verbose=0)
+        bl_base = benfordslaw()
+        df = bl_base.import_example(data='elections_usa')
         X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
 
         for pos in positions:
-            bl = benfordslaw(method='mad', pos=pos, verbose=0)
+            bl = benfordslaw(method='mad', pos=pos)
             results = bl.fit(X)
 
             # All should have valid MAD statistics
@@ -270,7 +270,7 @@ class TestFirstTwoDigits(unittest.TestCase):
 
     def test_first_two_digit_counting(self):
         """Test that first-two-digits are correctly extracted and counted."""
-        bl = benfordslaw(pos='first_two', verbose=0)
+        bl = benfordslaw(pos='first_two')
 
         # Test with known data
         data = np.array([10, 11, 12, 19, 20, 25, 99, 100, 1000, 10000])
@@ -281,7 +281,7 @@ class TestFirstTwoDigits(unittest.TestCase):
 
     def test_first_two_benford_probabilities(self):
         """Test that first-two-digit Benford probabilities sum to 1."""
-        bl = benfordslaw(pos='first_two', verbose=0)
+        bl = benfordslaw(pos='first_two')
 
         # Leading digits are in percentage, should sum to 100
         total_prob = np.sum(bl.leading_digits)
@@ -289,7 +289,7 @@ class TestFirstTwoDigits(unittest.TestCase):
 
     def test_first_two_digit_minimum_value(self):
         """Test that values less than 10 are excluded from first-two-digits test."""
-        bl = benfordslaw(pos='first_two', verbose=0)
+        bl = benfordslaw(pos='first_two')
 
         # All values less than 10
         data = np.array([1, 2, 3, 4, 5, 6, 7, 8, 9])

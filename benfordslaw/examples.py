@@ -1,3 +1,27 @@
+# %% Excess MAD - sample size adjusted conformity measure
+# Reference: Barney & Schulzke (2016), Journal of Forensic Accounting Research
+from benfordslaw import benfordslaw, compute_excess_mad
+
+# First-two-digits test with MAD method (recommended for fraud detection)
+bl = benfordslaw(pos='first_two', method='mad')
+df = bl.import_example(data='elections_usa')
+X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
+
+results = bl.fit(X)
+print(f"MAD: {results['mad']:.6f}")
+print(f"Expected MAD: {results['expected_mad']:.6f}")
+print(f"Excess MAD: {results['excess_mad']:.6f}")  # Negative = good conformity
+print(f"Conformity: {results['conformity_mad']}")
+
+bl.plot(title='Excess MAD Analysis - Donald Trump')
+
+# Quick computation using convenience function
+quick_result = compute_excess_mad(X, pos='first_two')
+print(f"Quick Excess MAD: {quick_result['excess_mad']:.6f}")
+
+# %%
+
+
 """Examples for benfords law."""
 
 # import benfordslaw
@@ -156,7 +180,7 @@ results = bl.fit(X)
 bl.plot(title='Donald Trump', barcolor=[0.5, 0.5, 0.5], fontsize=12, barwidth=0.4)
 
 # %% RUS
-df = bl.import_example('RUS')
+df = bl.import_example('elections_rus')
 candidates=['Putin Vladimir Vladimirovich', 'Baburin Sergei Nikolaevich', 'Titov Boris Yurievich', 'Yavlinskiy Gregory Alekseivich']
 
 for candidate in candidates:
@@ -172,25 +196,6 @@ for candidate in df['candidate'].unique():
     bl.fit(X)
     bl.plot(title=candidate)
 
-# %% Excess MAD - sample size adjusted conformity measure
-# Reference: Barney & Schulzke (2016), Journal of Forensic Accounting Research
-from benfordslaw import benfordslaw, compute_excess_mad
 
-# First-two-digits test with MAD method (recommended for fraud detection)
-bl = benfordslaw(pos='first_two', method='mad')
-df = bl.import_example(data='elections_usa')
-X = df['votes'].loc[df['candidate'] == 'Donald Trump'].values
-
-results = bl.fit(X)
-print(f"MAD: {results['mad']:.6f}")
-print(f"Expected MAD: {results['expected_mad']:.6f}")
-print(f"Excess MAD: {results['excess_mad']:.6f}")  # Negative = good conformity
-print(f"Conformity: {results['conformity']}")
-
-bl.plot(title='Excess MAD Analysis - Donald Trump')
-
-# Quick computation using convenience function
-quick_result = compute_excess_mad(X, pos='first_two')
-print(f"Quick Excess MAD: {quick_result['excess_mad']:.6f}")
 
 # %%
