@@ -71,6 +71,7 @@ jobs:
 
       # 6. Deploy to docs/pages/ folder on main branch
       - name: Deploy to docs/pages/ folder
+        if: github.event_name != 'pull_request'
         run: |
           # Configure git
           git config --global user.name "github-actions"
