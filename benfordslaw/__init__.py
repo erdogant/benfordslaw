@@ -4,7 +4,7 @@ import logging
 
 __author__ = 'Erdogan Tasksen'
 __email__ = 'erdogant@gmail.com'
-__version__ = '2.1.0'
+__version__ = '2.1.1'
 
 # Setup root logger
 _logger = logging.getLogger('benfordslaw')
