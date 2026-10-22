@@ -176,7 +176,9 @@ Normal data (Unmanipulated) does trend with Benford’s Law, whereas Manipulated
 </dl>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>X</strong> (<em>list</em><em> or </em><em>numpy array</em>) – Input data.</p>
+<dd class="field-odd"><p><strong>X</strong> (<em>list</em><em> or </em><em>numpy array</em>) – Input data.
+Negative digit positions require integer-valued observations;
+non-positive, missing and non-finite observations are ignored.</p>
 </dd>
 </dl>
 <p class="rubric">Examples</p>
@@ -184,11 +186,11 @@ Normal data (Unmanipulated) does trend with Benford’s Law, whereas Manipulated
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">benfordslaw</span><span class="w"> </span><span class="kn">import</span> <span class="n">benfordslaw</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize with chi2 method</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;chi2&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">'chi2'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get data for one candidate</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fit</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -202,17 +204,17 @@ Normal data (Unmanipulated) does trend with Benford’s Law, whereas Manipulated
 <span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span><span class="w"> </span><span class="nn">benfordslaw</span><span class="w"> </span><span class="kn">import</span> <span class="n">benfordslaw</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Initialize with MAD method</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">&#39;mad&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">method</span><span class="o">=</span><span class="s1">'mad'</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Get data for one candidate</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">()</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Fit</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Access Excess MAD (negative values indicate conformity to Benford&#39;s Law)</span>
-<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Excess MAD: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">&#39;excess_mad&#39;</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="c1"># Access Excess MAD (negative values indicate conformity to Benford's Law)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Excess MAD: </span><span class="si">{</span><span class="n">results</span><span class="p">[</span><span class="s1">'excess_mad'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1">#</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="c1"># Figure</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">()</span>

@@ -117,10 +117,10 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.05</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Print</span>
 <span class="nb">print</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
@@ -130,7 +130,7 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Donald Trump'</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id1">
@@ -150,16 +150,16 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Make fit</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=2&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Results of Donald Trump based on digit=2'</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id2">
@@ -179,16 +179,16 @@ We will check whether the votes are fraudulent based on benfords distribution.</
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Make fit</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=3&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Results of Donald Trump based on digit=3'</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id3">
@@ -209,16 +209,16 @@ However, we can assume a uniform distribution which is being done for every digi
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Make fit</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=4&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Results of Donald Trump based on digit=4'</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id4">
@@ -239,16 +239,16 @@ Benford’s Law has known distributions for the the first three digits. For othe
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Make fit</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-1&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Results of Donald Trump based on digit=-1'</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id5">
@@ -268,16 +268,16 @@ Benford’s Law has known distributions for the the first three digits. For othe
 <span class="n">bl</span> <span class="o">=</span> <span class="n">benfordslaw</span><span class="p">(</span><span class="n">pos</span><span class="o">=-</span><span class="mi">2</span><span class="p">)</span>
 
 <span class="c1"># Load elections example</span>
-<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">&#39;elections_usa&#39;</span><span class="p">)</span>
+<span class="n">df</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">import_example</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="s1">'elections_usa'</span><span class="p">)</span>
 
 <span class="c1"># Extract election information.</span>
-<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">&#39;votes&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;candidate&#39;</span><span class="p">]</span><span class="o">==</span><span class="s1">&#39;Donald Trump&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
+<span class="n">X</span> <span class="o">=</span> <span class="n">df</span><span class="p">[</span><span class="s1">'votes'</span><span class="p">]</span><span class="o">.</span><span class="n">loc</span><span class="p">[</span><span class="n">df</span><span class="p">[</span><span class="s1">'candidate'</span><span class="p">]</span><span class="o">==</span><span class="s1">'Donald Trump'</span><span class="p">]</span><span class="o">.</span><span class="n">values</span>
 
 <span class="c1"># Make fit</span>
 <span class="n">results</span> <span class="o">=</span> <span class="n">bl</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">X</span><span class="p">)</span>
 
 <span class="c1"># Plot</span>
-<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">&#39;Results of Donald Trump based on digit=-2&#39;</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
+<span class="n">bl</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">title</span><span class="o">=</span><span class="s1">'Results of Donald Trump based on digit=-2'</span><span class="p">,</span> <span class="n">barcolor</span><span class="o">=</span><span class="p">[</span><span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">,</span> <span class="mf">0.5</span><span class="p">],</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">barwidth</span><span class="o">=</span><span class="mf">0.4</span><span class="p">)</span>
 </pre></div>
 </div>
 <table class="docutils align-center" id="id6">
