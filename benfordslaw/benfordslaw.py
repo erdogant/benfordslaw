@@ -16,6 +16,8 @@ from scipy.stats import combine_pvalues
 import matplotlib.pyplot as plt
 import math
 import logging
+from decimal import Decimal
+from numbers import Real
 
 logger = logging.getLogger(__name__)
 
@@ -122,6 +124,8 @@ class benfordslaw:
         ----------
         X : list or numpy array
             Input data.
+            Negative digit positions require integer-valued observations;
+            non-positive, missing and non-finite observations are ignored.
 
         Examples
         --------
@@ -575,30 +579,43 @@ def _count_first_two_digits(data):
 
 # %% Counts and the frequencies in percentage for the second digit
 def _count_digit(data, d, digit_range):
-    # Get only non-zero values
-    data = data[data >= 1]
-
-    # Reverse numbers if last digits is required
+    """Count digits without discarding zeros in right-indexed integer values."""
     if d < 0:
-        data = list(map(lambda x: x[::-1], data.astype(str)))
-        data = np.array(data).astype(int)
-        d = d * -1
-
-    # Remove one because pythons starts counting from 0
-    d = d - 1
-
-    # Get the ith digit
-    digits = np.zeros_like(data)
-    Iloc = data >= np.power(10, d)
-    Iloc[np.isnan(Iloc)] = False
-    Iloc = Iloc.astype(bool)
-    digits[Iloc] = list(map(lambda x: int(str(x)[d]), data[Iloc]))
+        # Object conversion preserves Python/nullable integers without promoting
+        # mixed inputs to float. Scalar checks handle pd.NA and arbitrarily large
+        # integers, which numpy.isfinite cannot process in object arrays.
+        data = np.asarray(data, dtype=object).ravel()
+        place = 10 ** (-d - 1)
+        digits = []
+        for value in data:
+            if pd.isna(value):
+                continue
+            if isinstance(value, (float, np.floating)) and not np.isfinite(value):
+                continue
+            if isinstance(value, Decimal) and not value.is_finite():
+                continue
+            if isinstance(value, (bool, np.bool_)) or not isinstance(value, (Real, Decimal, np.integer, np.floating)):
+                raise TypeError('Negative digit positions require numeric integer-valued data.')
+            if value <= 0:
+                continue
+            number = int(value)
+            if value != number:
+                raise ValueError('Negative digit positions require integer-valued data.')
+            if number >= place:
+                digits.append((number // place) % 10)
+    else:
+        data = np.asarray(data)
+        data = data[data >= 1]
+        # Remove one because Python starts counting from 0.
+        d = d - 1
+        Iloc = data >= np.power(10, d)
+        digits = [int(str(x)[d]) for x in data[Iloc]]
 
     # Count occurences. Make sure every position is for [1-9]
     empirical_counts = np.zeros(len(digit_range))
     digitnr = []
     for i in digit_range:
-        empirical_counts[i - digit_range[0]] = list(digits[Iloc]).count(i)
+        empirical_counts[i - digit_range[0]] = digits.count(i)
         digitnr.append(i)
 
     # Total amount

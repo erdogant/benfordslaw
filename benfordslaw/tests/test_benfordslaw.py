@@ -50,7 +50,7 @@ class TestBENFORDSLAW(unittest.TestCase):
         bl = benfordslaw(method='ks')
         out = bl.fit(X)
         assert out['P']==1.0
-        assert out['t']==0.1111111111111111
+        np.testing.assert_allclose(out['t'], 0.1111111111111111, rtol=1e-12, atol=0)
 
         # TEST 4: check percentages
         assert np.all(out['percentage_emp'][:,1]==[31.64521544487969, 16.508114157806382, 12.479015109121432, 9.820928931169558, 7.862339115836598, 6.3794068270845, 5.8477895914941245, 4.616675993284835, 4.8405148293228875])
